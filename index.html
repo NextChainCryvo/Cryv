@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cryv Investimentos | Você no comando da sua vida financeira</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- ─── OVERLAY ─── -->
+<div class="overlay" id="overlay" onclick="closeAll()"></div>
+
+<!-- ─── NAVBAR ─── -->
+<!-- ─── NAVBAR ─── -->
+<nav>
+
+  <a class="nav-logo" href="#home">
+    <div class="nav-logo-box">
+      <img src="logo.png" alt="Logo">
+    </div>
+  </a>
+
+  <div class="nav-menu">
+    <div class="nav-item" id="ni-sobre">
+      <button onclick="toggleDrop('sobre')">
+        Sobre a Cryv
+        <svg class="chevron-icon" viewBox="0 0 10 6" fill="none">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="nav-item" id="ni-produtos">
+      <button onclick="toggleDrop('produtos')">
+        Produtos e Serviços
+        <svg class="chevron-icon" viewBox="0 0 10 6" fill="none">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="nav-item" id="ni-cont">
+      <button onclick="toggleDrop('cont')">
+        Conteúdos
+        <svg class="chevron-icon" viewBox="0 0 10 6" fill="none">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">Empresas</a>
+    </div>
+
+    <div class="nav-item">
+      <a href="#">Área do Trader</a>
+    </div>
+
+    <div class="nav-item" id="ni-duvidas">
+      <button onclick="toggleDrop('duvidas')">
+        Tire suas dúvidas
+        <svg class="chevron-icon" viewBox="0 0 10 6" fill="none">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav-right">
+    <a class="btn-login" href="#">
+      Acesse sua conta
+      <svg viewBox="0 0 20 20" fill="none">
+        <path d="M13 10H3M13 10L10 7M13 10L10 13M17 4V16"
+        stroke="currentColor" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <a class="btn-open" href="#">
+      Abra sua conta
+    </a>
+  </div>
+
+</nav>
+
+<!-- ─── DROPDOWN: Sobre a XP ─── -->
+<div class="mega-drop" id="drop-sobre">
+  <div class="mega-cols">
+    <div class="mega-col" style="min-width:150px;">
+      <div class="mega-col-label">A Cryv S.A</div>
+      <a href="#">Quem somos</a>
+      <a href="#">Compliance</a>
+    </div>
+    <div class="mega-sep"></div>
+    <div class="mega-col" style="min-width:210px;padding-left:32px;">
+      <div class="mega-col-label">Nossa atuação</div>
+      <a href="#">Consultoria Cryv</a>
+      <a href="#">Assessoria Cryv</a>
+      <a href="#">Experiências Cryv</a>
+      <a href="#">Espaços Cryv</a>
+      <a href="#">Encontre Cryv escritório</a>
+      <a href="#">Encontre um correspondente</a>
+      <a href="#">Cryv Educação</a>
+    </div>
+    <div class="mega-sep"></div>
+    <div class="mega-col" style="min-width:180px;padding-left:32px;">
+      <div class="mega-col-label">Trabalhe conosco</div>
+      <a href="#">Seja um assessor</a>
+      <a href="#">Seja um consultor</a>
+      <a href="#">Seja um fornecedor</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DROPDOWN: Produtos e Serviços ─── -->
+<div class="mega-drop" id="drop-produtos">
+  <div class="mega-cols">
+    <div class="mega-col" style="min-width:200px;">
+      <div class="mega-col-label">Produtos</div>
+      <a href="#">Todos os investimentos</a>
+      <a href="#">Simulador de investimentos</a>
+      <a href="#">Plataformas</a>
+      <a href="#">Home Broker</a>
+      <a href="#">Renda fixa</a>
+    </div>
+    <div class="mega-col" style="min-width:190px;">
+      <div class="mega-col-label" style="visibility:hidden">x</div>
+      <a href="#">Tesouro Direto</a>
+      <a href="#">Ações</a>
+      <a href="#">Aplicativo Cryv</a>
+      <a href="#">Futuros</a>
+      <a href="#">Fundos de investimento</a>
+    </div>
+    <div class="mega-col" style="min-width:175px;">
+      <div class="mega-col-label" style="visibility:hidden">x</div>
+      <a href="#">Fundos imobiliários</a>
+      <a href="#">Oferta pública</a>
+      <a href="#">COE</a>
+      <a href="#">RLP</a>
+    </div>
+    <div class="mega-sep"></div>
+    <div class="mega-col" style="min-width:200px;padding-left:32px;">
+      <div class="mega-col-label">Serviços Financeiros</div>
+      <a href="#">Cartão Cryv Legacy</a>
+      <a href="#">Cartão de Crédito</a>
+      <a href="#">Conta Digital</a>
+      <a href="#">Conta Investimento Global</a>
+    </div>
+    <div class="mega-sep"></div>
+    <div class="mega-col" style="min-width:180px;padding-left:32px;">
+      <div class="mega-col-label">Seguros e previdência</div>
+      <a href="#">Seguro de vida</a>
+      <a href="#">Previdência privada</a>
+      <div style="margin-top:18px;">
+        <div class="mega-col-label">Crédito</div>
+        <a href="#">Crédito Cryv</a>
+        <a href="#">Investimento Ampliado</a>
+      </div>
+      <div style="margin-top:18px;">
+        <div class="mega-col-label">Poder Público</div>
+        <a href="#">RPPS</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DROPDOWN: Conteúdos ─── -->
+<div class="mega-drop" id="drop-cont">
+  <div class="mega-cols">
+    <div class="mega-col">
+      <a href="#">Plataforma de conteúdos Cryv</a>
+      <a href="#">Recomendações de investimento</a>
+      <a href="#">Evento Expert</a>
+      <a href="#">InfoMoney</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── DROPDOWN: Tire suas dúvidas ─── -->
+<div class="mega-drop" id="drop-duvidas">
+  <div class="mega-cols">
+    <div class="mega-col" style="min-width:225px;">
+      <div class="mega-col-label">Tire suas dúvidas</div>
+      <a href="#">Central de atendimento</a>
+      <a href="#">Custos operacionais</a>
+      <a href="#">Transferência de recursos</a>
+      <a href="#">Portabilidade de investimentos</a>
+    </div>
+    <div class="mega-sep"></div>
+    <div class="mega-col" style="min-width:205px;padding-left:32px;">
+      <div class="mega-col-label">Segurança</div>
+      <a href="#">Bloqueio de acessos</a>
+      <a href="#">Dicas de Segurança</a>
+      <a href="#">Ative o Espaço Seguro</a>
+    </div>
+    <div class="mega-sep"></div>
+    <div class="mega-col" style="min-width:215px;padding-left:32px;">
+      <div class="mega-col-label">Fundo Garantidor de Créditos</div>
+      <a href="#">FGC: Banco Master</a>
+      <a href="#">FGC: Will Bank</a>
+      <a href="#">FGC: Banco Pleno</a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+
+  <!-- Left: big headline block -->
+  <div class="hero-content">
+    <p class="hero-eyebrow">Seu futuro financeiro começa aqui.</p>
+    <h1>
+      Invista no<br/>
+      futuro<br/>
+      com <span class="hero-highlight">segurança</span><br/>
+      e inovação
+    </h1>
+    <p class="hero-sub">
+      No Banco Cryv, você tem acesso às melhores soluções financeiras,
+      tecnologia de ponta e atendimento personalizado para fazer seu
+      dinheiro render mais.
+    </p>
+    <div class="hero-btns">
+      <a class="hbtn-primary" href="#">Criar minha conta Cryv &nbsp;→</a>
+    </div>
+  </div>
+
+  <!-- Right: info cards -->
+  <div class="hero-right">
+    <a class="side-card" href="#">
+      <div class="side-top">CONSULTORIA CRYV</div>
+      <div class="side-body">Planejamento exclusivo com visão de longo prazo</div>
+      <div class="side-link">
+        Saiba mais
+        <svg viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </a>
+    <a class="side-card" href="#">
+      <div class="side-link-hl">CDB 150% DO BANCO CRYV:</div>
+      <div class="side-desc-hl">invista até R$60 mil com garantia do FGC</div>
+      <div class="side-link">
+        Abra sua conta
+        <svg viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </a>
+    <a class="side-card" href="#">
+      <div class="side-top">CARTÃO CRYV LEGACY</div>
+      <div class="side-body">Até 9,5 Pontos Cryv por dólar ou 5,3% de Investback</div>
+      <div class="side-link">
+        Conheça
+        <svg viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ─── STATS ─── -->
+<div class="stats-bar">
+  <div class="stat-cell">
+    <div class="stat-n">4,7M+</div>
+    <div class="stat-l">clientes ativos<br/>na plataforma</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-n">R$1T+</div>
+    <div class="stat-l">em ativos sob<br/>custódia</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-n">25+</div>
+    <div class="stat-l">anos de mercado<br/>no Brasil</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-n">1.000+</div>
+    <div class="stat-l">produtos de<br/>investimento</div>
+  </div>
+</div>
+
+<!-- ─── CDB BANNER ─── -->
+<div class="cdb-wrap">
+  <div class="cdb-card">
+    <div>
+      <div class="cdb-lbl">Renda Fixa em Destaque</div>
+      <div class="cdb-ttl">CDB 150% do Banco Cryv</div>
+      <div class="cdb-dsc">Invista até R$60 mil com garantia do FGC. Liquidez diária disponível.</div>
+      <a class="hbtn-primary" href="#" style="display:inline-block;margin-top:22px;font-size:13.5px;padding:12px 28px;">
+        Abra sua conta
+      </a>
+    </div>
+    <div style="text-align:right;flex-shrink:0;">
+      <div class="cdb-num">150%</div>
+      <div class="cdb-sub">do CDI</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PRODUCTS ─── -->
+<section class="prod-sec">
+  <div class="prod-sec-ttl">Produtos e Serviços</div>
+
+  <div class="prod-tabs">
+    <button class="ptab on"  onclick="filterP(this,'all')">Todos</button>
+    <button class="ptab"     onclick="filterP(this,'rf')">Renda fixa</button>
+    <button class="ptab"     onclick="filterP(this,'rv')">Renda variável</button>
+    <button class="ptab"     onclick="filterP(this,'fundos')">Fundos</button>
+    <button class="ptab"     onclick="filterP(this,'sf')">Serviços financeiros</button>
+    <button class="ptab"     onclick="filterP(this,'prev')">Seguros e previdência</button>
+    <button class="ptab"     onclick="filterP(this,'cred')">Crédito</button>
+  </div>
+
+  <div class="pgrid" id="pgrid">
+    <a class="pcard" data-c="all rv"    href="#"><div class="pcard-icon">📈</div><div class="pcard-name">Ações</div><div class="pcard-desc">Invista na bolsa de valores</div></a>
+    <a class="pcard" data-c="all rf"    href="#"><div class="pcard-icon">🏦</div><div class="pcard-name">Renda Fixa</div><div class="pcard-desc">CDB, LCI, LCA e mais</div></a>
+    <a class="pcard" data-c="all rf"    href="#"><div class="pcard-icon">💰</div><div class="pcard-name">Tesouro Direto</div><div class="pcard-desc">Títulos do Governo Federal</div></a>
+    <a class="pcard" data-c="all fundos" href="#"><div class="pcard-icon">📊</div><div class="pcard-name">Fundos de Investimento</div><div class="pcard-desc">Gestores especializados</div></a>
+    <a class="pcard" data-c="all fundos" href="#"><div class="pcard-icon">🏢</div><div class="pcard-name">Fundos Imobiliários</div><div class="pcard-desc">Mercado imobiliário com liquidez</div></a>
+    <a class="pcard" data-c="all rv"    href="#"><div class="pcard-icon">⚡</div><div class="pcard-name">Futuros</div><div class="pcard-desc">Contratos futuros e derivativos</div></a>
+    <a class="pcard" data-c="all rf"    href="#"><div class="pcard-icon">🔮</div><div class="pcard-name">COE</div><div class="pcard-desc">Operações estruturadas</div></a>
+    <a class="pcard" data-c="all rv"    href="#"><div class="pcard-icon">🌍</div><div class="pcard-name">Conta Investimento Global</div><div class="pcard-desc">Invista no exterior</div></a>
+    <a class="pcard" data-c="all sf"    href="#"><div class="pcard-icon">💳</div><div class="pcard-name">Cartão XP Legacy</div><div class="pcard-desc">Até 9,5 pts XP por dólar</div></a>
+    <a class="pcard" data-c="all sf"    href="#"><div class="pcard-icon">📱</div><div class="pcard-name">Conta Digital</div><div class="pcard-desc">Sem mensalidade</div></a>
+    <a class="pcard" data-c="all prev"  href="#"><div class="pcard-icon">🛡️</div><div class="pcard-name">Seguro de Vida</div><div class="pcard-desc">Proteção para sua família</div></a>
+    <a class="pcard" data-c="all prev"  href="#"><div class="pcard-icon">🎯</div><div class="pcard-name">Previdência Privada</div><div class="pcard-desc">Planeje sua aposentadoria</div></a>
+    <a class="pcard" data-c="all cred"  href="#"><div class="pcard-icon">💵</div><div class="pcard-name">Crédito XP</div><div class="pcard-desc">Taxas diferenciadas</div></a>
+    <a class="pcard" data-c="all cred"  href="#"><div class="pcard-icon">🔁</div><div class="pcard-name">Investimento Ampliado</div><div class="pcard-desc">Alavancagem inteligente</div></a>
+  </div>
+</section>
+
+<!-- ─── APP DOWNLOAD ─── -->
+<div class="app-sec">
+  <div>
+    <h2>Baixe o aplicativo da Cryv</h2>
+    <p>Gerencie seus investimentos de qualquer lugar,<br/>com segurança e praticidade.</p>
+    <div class="app-bdgs">
+      <a class="abdg" href="#">
+        <svg viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.39-1.32 2.76-2.54 3.99zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+        <div class="abdg-t"><span>Disponível na</span><span>App Store</span></div>
+      </a>
+      <a class="abdg" href="#">
+        <svg viewBox="0 0 24 24"><path d="M3.18 23.76a2 2 0 0 1-.92-1.68V1.92A2 2 0 0 1 3.18.24l.1-.06 12.2 12.2-.1.1L3.18 23.76zm13.64-7.68l-2.22-2.22-9.8 5.64 12.02-3.42zM19.6 12l-2.6-1.48-2.46 2.46 2.48 2.48L19.6 14c.54-.32.82-.76.82-1.04 0-.26-.28-.68-.82-.96zm-11.42-6.1l9.8 5.62-2.22 2.22-7.58-7.84z"/></svg>
+        <div class="abdg-t"><span>Disponível no</span><span>Google Play</span></div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="f-grid">
+    <div class="f-col">
+      <div class="f-col-ttl">Produtos e serviços</div>
+      <a href="#">Todos os investimentos</a>
+      <a href="#">Simulador de investimentos</a>
+      <a href="#">Plataformas</a>
+      <a href="#">Home Broker</a>
+      <a href="#">Renda fixa</a>
+      <a href="#">Tesouro Direto</a>
+      <a href="#">Ações</a>
+      <a href="#">Aplicativo Cryv</a>
+      <a href="#">Futuros</a>
+      <a href="#">Fundos de investimento</a>
+      <a href="#">Fundos imobiliários</a>
+      <a href="#">Ofertas públicas</a>
+      <a href="#">RLP</a>
+      <a href="#">COE</a>
+      <a href="#">Cartão de crédito</a>
+      <a href="#">Conta digital</a>
+      <a href="#">Seguro de vida</a>
+      <a href="#">Previdência privada</a>
+      <a href="#">Crédito Cryv</a>
+      <a href="#">Investimento Ampliado</a>
+    </div>
+    <div class="f-col">
+      <div class="f-col-ttl">Tire suas dúvidas</div>
+      <a href="#">Central de atendimento</a>
+      <a href="#">Custos operacionais</a>
+      <a href="#">Transferência de recursos</a>
+      <a href="#">Portabilidade de investimentos</a>
+      <a href="#">Transparência na remuneração</a>
+      <div style="margin-top:24px;">
+        <div class="f-col-ttl">Atendimento</div>
+        <a href="#">Atendimento CVM</a>
+        <a href="#">Atendimento MRP</a>
+        <a href="#">Atendimento Ofícios</a>
+        <a href="#">Ouvidoria</a>
+      </div>
+    </div>
+    <div class="f-col">
+      <div class="f-col-ttl">Fale conosco</div>
+      <div class="f-contact-list">
+        <div class="fc-item"><span>Autoatendimento via WhatsApp</span><a href="#">+55 11 4935-2720</a></div>
+        <div class="fc-item"><span>SAC - Dúvidas, reclamações e orientações</span><a href="#">0800-772-0202</a></div>
+        <div class="fc-item"><span>Ouvidoria (Segunda a sexta das 9hs às 18hs)</span><a href="#">0800-722-3730</a></div>
+        <div class="fc-item"><span>Capitais e regiões metropolitanas</span><a href="#">+55 11 4003-3710</a></div>
+        <div class="fc-item"><span>Demais localidades</span><a href="#">0800-880-3710</a></div>
+        <div class="fc-item"><span>Para clientes no exterior</span><a href="#">+55 11 4935-2701</a></div>
+        <div class="fc-item"><span>Atendimento em Libras</span><a href="#">SAC em Libras (clique aqui)</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="f-links">
+    <a href="#">B3</a><span>|</span>
+    <a href="#">BSM</a><span>|</span>
+    <a href="#">CVM</a><span>|</span>
+    <a href="#">Política de privacidade</a><span>|</span>
+    <a href="#">Política de cookies</a><span>|</span>
+    <a href="#">Segurança</a><span>|</span>
+    <a href="#">Correspondentes Cambiais</a><span>|</span>
+    <a href="#">Correspondentes Bancários</a><span>|</span>
+    <a href="#">Seja um Fornecedor</a>
+  </div>
+
+  <div class="f-disclaimer">
+    Este material foi elaborado pelas empresas do Grupo Cryv Inc. ("Grupo Cryv") e possui caráter meramente informativo, não sendo uma oferta, recomendação e/ou garantia de contratação dos produtos aqui mencionados. Todo conteúdo deste material ficará sujeito às análises internas de elegibilidade, crédito, compliance e cadastro, além de não configurarem uma recomendação quanto à manutenção, compra ou venda de ativos financeiros e valores mobiliários. Os prazos, taxas, benefícios e demais condições aqui contidas são meramente indicativas e estão sujeitas às alterações sem aviso prévio. Quaisquer condições promocionais aqui previstas poderão ser alteradas, suspensas ou canceladas a qualquer tempo. O Grupo Cryv não se responsabiliza por endividamentos, prejuízos, diretos ou indiretos, que decorram da utilização deste material. Investimentos em mercados financeiros e de capitais estão sujeitos a riscos de perda superior ao valor total do capital investido.
+    <br/><br/>
+    Para mais informações sobre produtos, tabelas de custos operacionais e políticas de cobrança, acesse o nosso site: www.xpi.com.br ou ligue para 4003-3710 (capitais e regiões metropolitanas), 0800-880-3710 (demais localidades), +55 11 4935-2701 (clientes no exterior). Para reclamações, utilize o SAC 0800-772-0202. Se ainda não ficar satisfeito, entre em contato com a Ouvidoria em 0800-722-3730.
+  </div>
+
+  <div class="f-addr">Av. Chedid Jafet, 75, Torre Sul - Vila Olímpia, São Paulo, SP. CEP: 04551-060</div>
+  <div class="f-copy">© 2026 Cryv S.A. CNPJ: 02.332.886/0001-04 — Cryv Investimentos | Você no comando da sua vida financeira</div>
+</footer>
+
+<!-- ─── BOTÃO AJUDA ─── -->
+<button class="help-fab">
+  <svg viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="10" stroke="#111" stroke-width="2"/>
+    <path d="M9.5 9.5C9.5 8.12 10.62 7 12 7s2.5 1.12 2.5 2.5c0 1.5-2.5 2.5-2.5 4" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="12" cy="17" r="1" fill="#111"/>
+  </svg>
+</button>
+
+<script src="js/main.js"></script>
+</body>
+</html>
