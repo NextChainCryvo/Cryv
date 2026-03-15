@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cryv Investimentos - Abra sua conta</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .register-nav {
+    background: #111;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+  }
+
+  .xp-logo-box {
+    background: #222;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+  }
+
+  .xp-logo-box span {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+  }
+
+  .register-content {
+    flex: 1;
+    max-width: 780px;
+    padding: 60px 48px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .reg-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 12px;
+  }
+
+  .reg-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 28px;
+  }
+
+  .reg-divider {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin-bottom: 36px;
+  }
+
+  .reg-section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 8px;
+  }
+
+  .reg-section-sub {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .reg-input {
+    width: 100%;
+    background: #f0f0f0;
+    border: none;
+    padding: 18px 16px;
+    font-size: 15px;
+    color: #555;
+    border-radius: 2px;
+    outline: none;
+    margin-bottom: 28px;
+  }
+
+  .reg-input::placeholder { color: #888; }
+
+  .assessor-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .reg-radio-group {
+    display: flex;
+    gap: 28px;
+    margin-bottom: 28px;
+  }
+
+  .reg-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    color: #111;
+    cursor: pointer;
+  }
+
+  .reg-radio-label input[type="radio"] { display: none; }
+
+  .reg-radio-circle {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #aaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .reg-radio-label input:checked + .reg-radio-circle {
+    border-color: #111;
+    background: #111;
+  }
+
+  .reg-radio-label input:checked + .reg-radio-circle::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .btn-reg {
+    width: 100%;
+    background: #d0d0d0;
+    color: #888;
+    border: none;
+    padding: 18px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+
+  /* FOOTER */
+  .register-footer {
+    background: #111;
+    padding: 40px 48px 32px;
+  }
+
+  .footer-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .footer-xp-box {
+    background: #333;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+  }
+
+  .footer-xp-box span {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 900;
+  }
+
+  .footer-legal {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.7;
+    max-width: 1100px;
+    margin: 0 auto 28px;
+  }
+
+  .footer-address {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #888;
+    max-width: 1100px;
+    margin: 0 auto 16px;
+    border-top: 1px solid #333;
+    padding-top: 16px;
+  }
+
+  .footer-cookies {
+    font-size: 11px;
+    color: #888;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .footer-cookies a { color: #888; text-decoration: underline; }
+
+  .progress-bar {
+    height: 4px;
+    background: #f0f0f0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: #F5C518;
+    width: 5%;
+  }
+</style>
+</head>
+<body>
+
+  <nav class="register-nav">
+    <div class="xp-logo-box"><span>xp</span></div>
+  </nav>
+
+  <div class="register-content">
+    <h1 class="reg-title">Boas-vindas à Cryv!</h1>
+    <p class="reg-subtitle">Para agilizar a abertura da conta, tenha um documento pessoal em mãos (CNH, RG, CIN ou RNE).</p>
+    <hr class="reg-divider">
+
+    <h2 class="reg-section-title">Para começar, qual é o seu nome?</h2>
+    <p class="reg-section-sub">Exatamente como ele está escrito no seu documento de identificação.</p>
+
+    <input class="reg-input" type="text" placeholder="Nome completo">
+
+    <span class="assessor-label">Você veio por indicação de um assessor?</span>
+
+    <div class="reg-radio-group">
+      <label class="reg-radio-label">
+        <input type="radio" name="assessor" value="sim">
+        <span class="reg-radio-circle"></span>
+        Sim
+      </label>
+      <label class="reg-radio-label">
+        <input type="radio" name="assessor" value="nao" checked>
+        <span class="reg-radio-circle"></span>
+        Não
+      </label>
+    </div>
+
+    <button class="btn-reg">Preencha para continuar</button>
+  </div>
+
+  <footer class="register-footer">
+    <div class="footer-logo">
+      <div class="footer-xp-box"><span>xp</span></div>
+    </div>
+    <p class="footer-legal">
+      A XP Investimentos CCTVM S.A., inscrita no CNPJ/ME sob o nº 02.332.886/0001-04, é uma instituição financeira autorizada a funcionar pelo Banco Central do Brasil ("XP Investimentos") e exime-se de responsabilidade por danos sofridos por seus clientes, por força de falha de serviços disponibilizados por terceiros. Ainda sim, destaca que toda comunicação através de rede mundial de computadores está sujeita a interrupções ou atrasos, podendo impedir ou prejudicar o envio de ordens ou a recepção de informações atualizadas. A XP Investimentos informa que os recursos de seus clientes são mantidos em conta de registro utilizada exclusivamente pela corretora para registro de operações de cada cliente, conforme previsto no § 6º, Art. 14-A da Resolução do Banco Central do Brasil nº 1.655, de 26 de outubro 1989. Não obstante, a XP Investimentos informa que estas contas de registro não se confundem com as contas de pagamento de que tratam os arts. 6º, inciso IV, e 12 da Lei nº 12.865, de 9 de outubro de 2013. Por essa razão, esclarece que os recursos mantidos em contas de registro não possuem regime jurídico equivalente ao dos recursos mantidos em conta de pagamento, nos termos previstos no art. 12 da Lei nº 12.865, de 2013.
+    </p>
+    <div class="footer-address">
+      <span>Av. Chedid Jafet, 75, Torre Sul - Vila Olímpia, São Paulo, SP. CEP: 04551-060</span>
+      <span>© 2026 XP S.A. CNPJ: 02.332.886/0001-04</span>
+    </div>
+    <p class="footer-cookies">Este site usa cookies e dados pessoais de acordo com os nossos <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a>.</p>
+  </footer>
+
+  <div class="progress-bar"><div class="progress-bar-fill"></div></div>
+
+<script>
+  document.querySelectorAll('input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => {
+        const circle = r.nextElementSibling;
+        circle.style.borderColor = r.checked ? '#111' : '#aaa';
+        circle.style.background = r.checked ? '#111' : 'transparent';
+      });
+    });
+  });
+
+  document.querySelectorAll('input[type="radio"]:checked').forEach(r => {
+    r.nextElementSibling.style.borderColor = '#111';
+    r.nextElementSibling.style.background = '#111';
+  });
+</script>
+</body>
+</html>

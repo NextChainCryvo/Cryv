@@ -19,6 +19,7 @@ nav{
   object-fit:contain;
 }
 
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;letter-spacing:.15em;color:#fff;text-transform:uppercase}
 
 .nav-logo-box svg{width:24px;height:24px;}
 .nav-menu{display:flex;align-items:center;gap:0;flex:1;}
@@ -119,13 +120,15 @@ nav{
   font-size:13px;font-weight:400;
   color:rgba(255,255,255,.5);letter-spacing:0.3px;
   margin-bottom:16px;
+  padding-left: 50px;
 }
 .hero-content h1{
-  font-size:clamp(30px,5.8vw,75px);
+  font-size:clamp(30px,5.8vw,60px);
   font-weight:800;line-height:1.0;
   letter-spacing:-3px;
   margin-bottom:28px;color:#fff;
   text-transform:uppercase;
+  padding-left: 50px;
 }
 .hero-highlight{
   color:#E8B000;
@@ -134,13 +137,16 @@ nav{
 .hero-sub{
   font-size:15px;color:rgba(255,255,255,.5);line-height:1.65;
   margin-bottom:36px;font-weight:400;max-width:480px;
+  padding-left: 50px;
 }
-.hero-btns{display:flex;gap:12px;}
+.hero-btns{display:flex;gap:12px; padding-left: 50px;}
+
 .hbtn-primary{
   background:#E8B000;color:#111;border:none;
   padding:15px 36px;border-radius:8px;
   font-family:'Inter',sans-serif;font-size:15px;font-weight:700;
   cursor:pointer;transition:background .2s,transform .15s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+  padding-left: 50px;
 }
 .hbtn-primary:hover{background:#d4a000;transform:translateY(-1px);}
 .hbtn-secondary{
