@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cryv Investimentos - Abra sua conta</title>
+<link rel="stylesheet" href="public/css/cadastro.css">
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<style>
+  /* Estilos adicionais para a transição elegante entre as etapas e o divisor do Google */
+  .form-step {
+    display: none;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s ease-in-out;
+  }
+  .form-step.active {
+    display: block;
+  }
+  .form-step.fade-in {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .reg-divider-text {
+    text-align: center;
+    margin: 25px 0;
+    position: relative;
+  }
+  .reg-divider-text::before {
+    content: "";
+    position: absolute;
+    top: 50%; left: 0; width: 100%; height: 1px;
+    background: #e0e0e0; z-index: 1;
+  }
+  .reg-divider-text span {
+    background: #fff; padding: 0 15px;
+    position: relative; z-index: 2; color: #666; font-size: 14px;
+  }
+  
+  .btn-voltar {
+    background: none; border: none; color: #666;
+    text-decoration: underline; cursor: pointer;
+    width: 100%; margin-top: 15px; font-size: 14px; font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+  <nav class="register-nav">
+    <div class="xp-logo-box"><span>cryv</span></div>
+  </nav>
+
+  <div class="register-content">
+    <h1 class="reg-title">Boas-vindas à Cryv!</h1>
+    <p class="reg-subtitle">Para agilizar a abertura da conta, tenha um documento pessoal em mãos (CNH, RG, CIN ou RNE).</p>
+    <hr class="reg-divider">
+
+    <form id="formCadastro">
+      
+      <div id="step1" class="form-step active fade-in">
+        <h2 class="reg-section-title">Para começar, qual é o seu e-mail?</h2>
+        <p class="reg-section-sub">Utilizaremos este e-mail para comunicação oficial.</p>
+        <input class="reg-input" type="email" id="inputEmail" placeholder="seu@email.com" required>
+
+        <button type="button" class="btn-reg" onclick="irParaStep2()">Continuar com e-mail</button>
+
+        <div class="reg-divider-text"><span>ou</span></div>
+
+        <div id="googleButtonDiv" style="display: flex; justify-content: center;"></div>
+      </div>
+
+      <div id="step2" class="form-step">
+        <h2 class="reg-section-title">Qual é o seu nome completo?</h2>
+        <p class="reg-section-sub">Exatamente como ele está escrito no seu documento de identificação.</p>
+        <input class="reg-input" type="text" id="inputNome" placeholder="Nome completo" required>
+
+        <span class="assessor-label">Você veio por indicação de um assessor?</span>
+
+        <div class="reg-radio-group">
+          <label class="reg-radio-label">
+            <input type="radio" name="assessor" value="sim">
+            <span class="reg-radio-circle"></span>
+            Sim
+          </label>
+          <label class="reg-radio-label">
+            <input type="radio" name="assessor" value="nao" checked>
+            <span class="reg-radio-circle"></span>
+            Não
+          </label>
+        </div>
+
+        <button type="submit" class="btn-reg">Preencha para continuar</button>
+        <button type="button" class="btn-voltar" onclick="voltarParaStep1()">Voltar</button>
+      </div>
+
+    </form>
+  </div>
+
+  <footer class="register-footer">
+    <div class="footer-logo">
+      <div class="footer-xp-box"><span>cryv</span></div>
+    </div>
+    <p class="footer-legal">
+      A XP Investimentos CCTVM S.A., inscrita no CNPJ/ME sob o nº 02.332.886/0001-04... (texto omitido para brevidade, mantenha o seu original).
+    </p>
+    <div class="footer-address">
+      <span>Av. Chedid Jafet, 75, Torre Sul - Vila Olímpia, São Paulo, SP. CEP: 04551-060</span>
+      <span>© 2026 XP S.A. CNPJ: 02.332.886/0001-04</span>
+    </div>
+    <p class="footer-cookies">Este site usa cookies e dados pessoais de acordo com os nossos <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a>.</p>
+  </footer>
+
+  <div class="progress-bar"><div class="progress-bar-fill" id="barraProgresso"></div></div>
+
+<script>
+  // Lógica original dos Radio Buttons mantida
+  document.querySelectorAll('input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+      document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => {
+        const circle = r.nextElementSibling;
+        circle.style.borderColor = r.checked ? '#111' : '#aaa';
+        circle.style.background = r.checked ? '#111' : 'transparent';
+      });
+    });
+  });
+
+  document.querySelectorAll('input[type="radio"]:checked').forEach(r => {
+    r.nextElementSibling.style.borderColor = '#111';
+    r.nextElementSibling.style.background = '#111';
+  });
+
+  // --- LÓGICA DAS ETAPAS (STEPS) ---
+  const step1 = document.getElementById('step1');
+  const step2 = document.getElementById('step2');
+  const barraProgresso = document.getElementById('barraProgresso');
+
+  function irParaStep2() {
+    const email = document.getElementById('inputEmail').value;
+    
+    // Validação simples antes de avançar
+    if (!email || !email.includes('@')) {
+      alert("Por favor, insira um e-mail válido antes de continuar.");
+      return;
+    }
+
+    // Oculta Step 1
+    step1.classList.remove('fade-in');
+    setTimeout(() => {
+      step1.classList.remove('active');
+      
+      // Mostra Step 2
+      step2.classList.add('active');
+      // Atualiza a barra de progresso (exemplo visual)
+      barraProgresso.style.width = '50%'; 
+      
+      // Pequeno delay para o browser renderizar o display:block antes de animar a opacidade
+      setTimeout(() => {
+        step2.classList.add('fade-in');
+      }, 50);
+    }, 400); // 400ms é o tempo da transição no CSS
+  }
+
+  function voltarParaStep1() {
+    // Oculta Step 2
+    step2.classList.remove('fade-in');
+    setTimeout(() => {
+      step2.classList.remove('active');
+      
+      // Mostra Step 1
+      step1.classList.add('active');
+      barraProgresso.style.width = '0%';
+      
+      setTimeout(() => {
+        step1.classList.add('fade-in');
+      }, 50);
+    }, 400);
+  }
+
+  // --- LÓGICA DO GOOGLE LOGIN ---
+  window.onload = function () {
+    // Inicializa o botão do Google
+    google.accounts.id.initialize({
+      client_id: "SEU_CLIENT_ID_DO_GOOGLE_AQUI.apps.googleusercontent.com", // Substitua pelo seu ID
+      callback: handleGoogleResponse
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("googleButtonDiv"),
+      { theme: "outline", size: "large", width: "100%", text: "continue_with" } 
+    );
+  }
+
+  function handleGoogleResponse(response) {
+    // Aqui você envia o response.credential (Token JWT) para o seu backend Node.js
+    console.log("Token recebido do Google:", response.credential);
+    // Como o usuário já autenticou, podemos avançar direto para a Etapa 2 para pegar os dados complementares
+    irParaStep2();
+  }
+</script>
+</body>
+</html>
