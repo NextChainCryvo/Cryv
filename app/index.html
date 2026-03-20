@@ -3,437 +3,656 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cryv Investimentos | Você no comando da sua vida financeira</title>
+  <title>Cryv — Orientação Financeira Acessível</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/public/css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg:     #111111;
+      --bg2:    #161616;
+      --bg3:    #1c1c1c;
+      --card:   #1a1a1a;
+      --gold:   #E8B000;
+      --gold2:  #d4a000;
+      --white:  #ffffff;
+      --muted:  rgba(255,255,255,0.5);
+      --border: rgba(255,255,255,0.08);
+      --bdgold: rgba(218,175,55,0.15);
+      --radius: 14px;
+    }
+    body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%; height: 64px;
+      background: rgba(17,17,17,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border); z-index: 1000;
+      display: flex; align-items: center; padding: 0 5%;
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.7); }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none; margin-right: 40px; flex-shrink: 0;
+    }
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; flex: 1; }
+    .nav-links a {
+      font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,.7);
+      text-decoration: none; padding: 0 14px; height: 64px;
+      display: flex; align-items: center; transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+    .btn-login { font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,.7); text-decoration: none; padding: 8px 14px; transition: color .15s; }
+    .btn-login:hover { color: var(--white); }
+    .btn-open {
+      background: var(--gold); color: #111; padding: 10px 26px; border-radius: 100px;
+      font-size: 13.5px; font-weight: 700; text-decoration: none; white-space: nowrap;
+      transition: background .2s, transform .15s;
+    }
+    .btn-open:hover { background: var(--gold2); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; margin-left: auto; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: .3s; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: grid; grid-template-columns: 58% 1fr;
+      align-items: center; padding: 124px 5% 80px; gap: 48px;
+      position: relative; overflow: hidden;
+      background:
+        radial-gradient(ellipse 55% 70% at 15% 55%, rgba(180,120,0,.18) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 100% at 0% 50%, rgba(100,65,0,.14) 0%, transparent 55%),
+        linear-gradient(100deg, #1a1100 0%, #111111 45%, #0c0b08 100%);
+    }
+    .hero-glow {
+      position: absolute; left: -60px; top: 50%; transform: translateY(-50%);
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(218,150,0,.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--gold); background: rgba(232,176,0,.1); border: 1px solid rgba(232,176,0,.2);
+      padding: 6px 16px; border-radius: 100px; margin-bottom: 28px;
+      animation: fadeUp .8s ease both;
+    }
+    .hero-eyebrow::before { content: '●'; font-size: 7px; }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 6vw, 80px); font-weight: 700;
+      line-height: 1.0; letter-spacing: -2px; color: var(--white);
+      margin-bottom: 24px; animation: fadeUp .8s .1s ease both;
+    }
+    .hero h1 em { color: var(--gold); font-style: italic; font-weight: 300; }
+    .hero-sub {
+      font-size: 16px; line-height: 1.75; color: var(--muted);
+      max-width: 460px; margin-bottom: 36px;
+      animation: fadeUp .8s .2s ease both;
+    }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; animation: fadeUp .8s .3s ease both; }
+    .hbtn-primary {
+      background: var(--gold); color: #111; padding: 15px 36px; border-radius: 100px;
+      font-size: 15px; font-weight: 700; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      box-shadow: 0 6px 28px rgba(232,176,0,.3);
+      transition: background .2s, transform .15s, box-shadow .2s;
+    }
+    .hbtn-primary:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 10px 36px rgba(232,176,0,.4); }
+    .hbtn-secondary {
+      background: rgba(255,255,255,.07); color: var(--white);
+      border: 1px solid rgba(255,255,255,.15); padding: 15px 36px; border-radius: 100px;
+      font-size: 15px; font-weight: 500; text-decoration: none;
+      transition: background .2s, border-color .2s;
+    }
+    .hbtn-secondary:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3); }
+    .price-badge {
+      display: inline-flex; align-items: baseline; gap: 5px;
+      background: rgba(232,176,0,.12); border: 1px solid rgba(232,176,0,.25);
+      color: var(--gold); padding: 8px 18px; border-radius: 100px;
+      font-size: 13px; font-weight: 600; margin-top: 24px;
+      animation: fadeUp .8s .4s ease both;
+    }
+    .price-badge strong { font-size: 20px; font-weight: 800; }
+
+    /* Hero cards */
+    .hero-right { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 12px; animation: fadeUp .8s .2s ease both; }
+    .side-card {
+      background: rgba(28,26,18,.92); border: 1px solid var(--bdgold);
+      border-radius: var(--radius); padding: 22px 24px;
+      text-decoration: none; display: block;
+      transition: background .2s, border-color .2s, transform .2s;
+    }
+    .side-card:hover { background: rgba(40,36,22,.97); border-color: rgba(218,175,55,.35); transform: translateX(-4px); }
+    .side-top { font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(218,175,55,.7); margin-bottom: 8px; }
+    .side-body { font-size: 14px; color: rgba(255,255,255,.78); line-height: 1.5; margin-bottom: 14px; }
+    .side-link { display: flex; align-items: center; gap: 6px; font-size: 13px; color: rgba(255,255,255,.4); font-weight: 500; transition: color .15s; }
+    .side-card:hover .side-link { color: rgba(218,175,55,.9); }
+    .side-link svg { width: 14px; height: 14px; }
+    .side-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(232,176,0,.15); color: var(--gold); padding: 5px 12px; border-radius: 100px; font-size: 12px; font-weight: 700; margin-top: 12px; }
+
+    /* STATS */
+    .stats { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: grid; grid-template-columns: repeat(4,1fr); }
+    .stat-cell { padding: 36px; border-right: 1px solid var(--border); }
+    .stat-cell:last-child { border-right: none; }
+    .stat-n { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 700; letter-spacing: -2px; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+    .stat-l { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* SECTIONS */
+    .section { padding: 96px 5%; }
+    .sec-label { font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 700; line-height: 1.05; letter-spacing: -1.5px; color: var(--white); margin-bottom: 18px; }
+    .sec-title em { color: var(--gold); font-style: italic; font-weight: 300; }
+    .sec-sub { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 500px; }
+
+    /* COMO FUNCIONA */
+    .how { background: var(--bg3); }
+    .how-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .steps { display: flex; flex-direction: column; }
+    .step { display: flex; gap: 22px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .step-num { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: var(--gold); color: #111; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 20px; display: flex; align-items: center; justify-content: center; }
+    .step-content h3 { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .step-content p { font-size: 14px; line-height: 1.65; color: var(--muted); }
+
+    .how-visual { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; }
+    .chat-bar { display: flex; align-items: center; gap: 10px; padding-bottom: 20px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+    .chat-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--gold); color: #111; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+    .chat-name { font-size: 14px; font-weight: 600; }
+    .chat-status { font-size: 12px; color: #4ade80; }
+    .chat-bubble { display: flex; gap: 10px; margin-bottom: 16px; align-items: flex-end; }
+    .chat-bubble.right { flex-direction: row-reverse; }
+    .bav { width: 32px; height: 32px; border-radius: 50%; background: #2a2a2a; color: var(--muted); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .bav.me { background: var(--gold); color: #111; }
+    .btext { background: #2a2a2a; border-radius: 16px 16px 16px 4px; padding: 12px 16px; font-size: 13.5px; line-height: 1.6; color: rgba(255,255,255,.85); max-width: 240px; }
+    .chat-bubble.right .btext { background: var(--gold); color: #111; border-radius: 16px 16px 4px 16px; }
+    .btime { font-size: 10px; color: rgba(255,255,255,.3); margin-top: 4px; }
+    .pix-row { display: flex; align-items: center; gap: 14px; background: rgba(232,176,0,.08); border: 1px solid rgba(232,176,0,.2); border-radius: 12px; padding: 14px 18px; margin-top: 8px; }
+    .pix-row span:first-child { font-size: 22px; }
+    .pix-row div { font-size: 13px; line-height: 1.5; }
+    .pix-row strong { display: block; color: var(--gold); font-size: 13.5px; }
+
+    /* SERVIÇOS */
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 56px; }
+    .scard { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px 26px; position: relative; overflow: hidden; transition: border-color .25s, transform .25s; }
+    .scard::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+    .scard:hover { border-color: rgba(218,175,55,.3); transform: translateY(-4px); }
+    .scard:hover::after { transform: scaleX(1); }
+    .scard-icon { font-size: 32px; margin-bottom: 18px; display: block; }
+    .scard h3 { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .scard p { font-size: 13.5px; line-height: 1.7; color: var(--muted); }
+    .services-note { margin: 32px auto 0; padding: 18px 22px; background: rgba(232,176,0,.06); border: 1px solid rgba(232,176,0,.15); border-radius: 12px; max-width: 640px; text-align: center; }
+    .services-note p { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .services-note strong { color: var(--gold); }
+
+    /* PRICING */
+    .pricing { background: var(--bg2); }
+    .pricing-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .price-list { display: flex; flex-direction: column; gap: 14px; }
+    .price-row { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; display: flex; align-items: center; justify-content: space-between; transition: border-color .2s; }
+    .price-row:hover { border-color: rgba(218,175,55,.3); }
+    .price-row.featured { background: rgba(232,176,0,.08); border-color: rgba(232,176,0,.3); }
+    .pr-left h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .pr-left p { font-size: 13px; color: var(--muted); }
+    .pr-price { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 700; letter-spacing: -1px; color: var(--gold); text-align: right; }
+    .pr-price span { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--muted); font-weight: 400; display: block; }
+    .feat-badge { display: inline-block; background: var(--gold); color: #111; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; margin-bottom: 8px; }
+    .price-note { font-size: 13px; color: var(--muted); line-height: 1.7; padding: 16px 20px; background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 12px; border-left: 2px solid var(--gold); }
+    .guarantees { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+    .guarantee { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--muted); }
+    .guarantee::before { content: '✓'; width: 24px; height: 24px; border-radius: 50%; background: rgba(232,176,0,.15); color: var(--gold); font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    /* DEPOIMENTOS */
+    .testim-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 56px; }
+    .tcard { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px; }
+    .stars { color: var(--gold); font-size: 14px; margin-bottom: 16px; letter-spacing: 2px; }
+    .tcard-body { font-size: 14.5px; line-height: 1.75; color: rgba(255,255,255,.75); margin-bottom: 24px; font-style: italic; }
+    .tcard-person { display: flex; align-items: center; gap: 12px; }
+    .tcard-av { width: 42px; height: 42px; border-radius: 50%; background: var(--gold); color: #111; font-weight: 800; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+    .tcard-name { font-size: 14px; font-weight: 700; }
+    .tcard-role { font-size: 12px; color: var(--muted); }
+
+    /* FORM CLIENTE */
+    .client-form-sec {
+      background: radial-gradient(ellipse 60% 80% at 0% 50%, rgba(180,120,0,.2) 0%, transparent 55%), linear-gradient(135deg, #1a1100 0%, #111111 60%);
+      padding: 96px 5%; border-top: 1px solid var(--border);
+    }
+    .cform-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .cform-guarantees { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+    .cform-g { display: flex; align-items: center; gap: 12px; font-size: 14px; color: rgba(255,255,255,.65); }
+    .cform-g::before { content: '✓'; width: 22px; height: 22px; border-radius: 50%; background: rgba(232,176,0,.2); color: var(--gold); font-weight: 800; font-size: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .the-form { background: var(--bg3); border: 1px solid var(--border); border-radius: 20px; padding: 40px; }
+    .the-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+    .the-form > p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .f-field { margin-bottom: 16px; }
+    .f-field label { display: block; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,.45); margin-bottom: 7px; letter-spacing: .04em; }
+    .f-field input, .f-field select {
+      width: 100%; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px; padding: 12px 16px; font-size: 14px; color: var(--white);
+      font-family: 'Inter', sans-serif; outline: none; transition: border-color .2s;
+    }
+    .f-field input::placeholder { color: rgba(255,255,255,.2); }
+    .f-field input:focus, .f-field select:focus { border-color: rgba(232,176,0,.5); }
+    .f-field select option { background: #1c1c1c; }
+    .btn-form { width: 100%; background: var(--gold); color: #111; padding: 15px; border-radius: 100px; font-size: 15px; font-weight: 800; border: none; cursor: pointer; font-family: 'Inter', sans-serif; transition: background .2s, transform .15s; margin-top: 4px; }
+    .btn-form:hover { background: var(--gold2); transform: translateY(-1px); }
+    .form-privacy { font-size: 12px; color: rgba(255,255,255,.3); text-align: center; margin-top: 12px; }
+
+    /* ESTUDANTES */
+    .students { background: var(--bg); border-top: 1px solid var(--border); }
+    .students-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .perks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 36px; }
+    .perk { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; transition: border-color .2s; }
+    .perk:hover { border-color: var(--bdgold); }
+    .perk-icon { font-size: 26px; margin-bottom: 10px; }
+    .perk h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .perk p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .student-form { background: var(--bg3); border: 1px solid var(--border); border-radius: 20px; padding: 38px; }
+    .student-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+    .student-form > p { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
+    .btn-gold-full { width: 100%; background: var(--gold); color: #111; padding: 14px; border-radius: 100px; font-size: 15px; font-weight: 800; border: none; cursor: pointer; font-family: 'Inter', sans-serif; transition: background .2s, transform .15s; margin-top: 4px; }
+    .btn-gold-full:hover { background: var(--gold2); transform: translateY(-1px); }
+
+    /* FAQ */
+    .faq { background: var(--bg2); }
+    .faq-list { max-width: 700px; margin: 56px auto 0; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q { width: 100%; background: none; border: none; text-align: left; cursor: pointer; padding: 22px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: 'Inter', sans-serif; font-size: 15.5px; font-weight: 600; color: var(--white); }
+    .faq-arrow { width: 28px; height: 28px; border-radius: 50%; background: rgba(232,176,0,.15); color: var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; transition: transform .3s, background .2s; }
+    .faq-item.open .faq-arrow { transform: rotate(45deg); background: var(--gold); color: #111; }
+    .faq-a { font-size: 14.5px; line-height: 1.8; color: var(--muted); max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; padding: 0; }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 22px; }
+
+    /* FOOTER */
+    footer { background: #0c0c0c; border-top: 1px solid var(--border); padding: 68px 5% 36px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; padding-bottom: 52px; border-bottom: 1px solid var(--border); margin-bottom: 36px; }
+    .footer-brand .nav-logo { font-size: 28px; display: block; margin-bottom: 14px; }
+    .footer-brand p { font-size: 14px; color: var(--muted); line-height: 1.75; max-width: 300px; }
+    .footer-wpp { display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff; padding: 10px 20px; border-radius: 100px; font-size: 13.5px; font-weight: 700; text-decoration: none; margin-top: 20px; transition: opacity .2s; }
+    .footer-wpp:hover { opacity: .85; }
+    .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 18px; }
+    .footer-col a { display: block; font-size: 14px; color: var(--muted); text-decoration: none; margin-bottom: 12px; transition: color .15s; }
+    .footer-col a:hover { color: var(--white); }
+    .footer-disclaimer { font-size: 11.5px; line-height: 1.75; color: rgba(255,255,255,.25); margin-bottom: 28px; padding: 16px 20px; background: rgba(255,255,255,.02); border-radius: 10px; border-left: 2px solid rgba(255,255,255,.06); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: rgba(255,255,255,.25); }
+
+    /* TOAST */
+    .toast { position: fixed; bottom: 28px; right: 28px; z-index: 9999; background: var(--gold); color: #111; padding: 14px 24px; border-radius: 100px; font-size: 14px; font-weight: 700; box-shadow: 0 8px 32px rgba(232,176,0,.4); transform: translateY(80px); opacity: 0; transition: all .4s cubic-bezier(.34,1.56,.64,1); }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* MOBILE */
+    @media (max-width: 960px) {
+      .nav-links, #navCta, .btn-login { display: none !important; }
+      .hamburger { display: flex; }
+      .nav-links.open { display: flex !important; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; background: #1c1c1c; border-bottom: 1px solid var(--border); padding: 20px 5%; gap: 4px; z-index: 999; }
+      .nav-links.open li a { height: auto; padding: 12px 0; }
+      .hero { grid-template-columns: 1fr; padding: 100px 5% 64px; gap: 40px; }
+      .hero-right { display: none; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stat-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .how-inner, .pricing-inner, .students-inner, .cform-inner { grid-template-columns: 1fr; gap: 40px; }
+      .services-grid, .testim-grid, .perks-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ─── OVERLAY ─── -->
-<div class="overlay" id="overlay" onclick="closeAll()"></div>
-
-<!-- ─── NAVBAR ─── -->
-<!-- ─── NAVBAR ─── -->
-<nav>
-
-  <a class="nav-logo" href="#home">
-    <div class="nav-logo-box">
-      <img src="/public/img/logo.png" alt="Logo">
-
-    </div>
-  </a>
-
-  <div class="nav-menu">
-    <div class="nav-item" id="ni-sobre">
-      <button onclick="toggleDrop('sobre')">
-        Sobre a Cryv
-        <svg class="chevron-icon" viewBox="0 0 10 6" fill="none">
-          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-    </div>
-
-    <div class="nav-item" id="ni-produtos">
-      <button onclick="toggleDrop('produtos')">
-        Produtos e Serviços
-        <svg class="chevron-icon" viewBox="0 0 10 6" fill="none">
-          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-    </div>
-
-    <div class="nav-item" id="ni-cont">
-      <button onclick="toggleDrop('cont')">
-        Conteúdos
-        <svg class="chevron-icon" viewBox="0 0 10 6" fill="none">
-          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-    </div>
-
-    <div class="nav-item">
-      <a href="#">Empresas</a>
-    </div>
-
-    <div class="nav-item">
-      <a href="#">Área do Trader</a>
-    </div>
-
-    <div class="nav-item" id="ni-duvidas">
-      <button onclick="toggleDrop('duvidas')">
-        Tire suas dúvidas
-        <svg class="chevron-icon" viewBox="0 0 10 6" fill="none">
-          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-
+<nav id="navbar">
+  <a class="nav-logo" href="#home">Cryv</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#como-funciona">Como funciona</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#precos">Preços</a></li>
+    <li><a href="#estudantes">Seja consultor</a></li>
+    <li><a href="#faq">Dúvidas</a></li>
+  </ul>
   <div class="nav-right">
-    <a class="btn-login" href="login.html">
-      Acesse sua conta
-      <svg viewBox="0 0 20 20" fill="none">
-        <path d="M13 10H3M13 10L10 7M13 10L10 13M17 4V16"
-        stroke="currentColor" stroke-width="1.5"
-        stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-
-    <a class="btn-open" href="cadastro.html">
-      Abra sua conta
-    </a>
+    <a class="btn-login" href="#estudantes">Seja consultor</a>
+    <a class="btn-open" id="navCta" href="#quero-comecar">Quero começar</a>
   </div>
-
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- ─── DROPDOWN: Sobre a XP ─── -->
-<div class="mega-drop" id="drop-sobre">
-  <div class="mega-cols">
-    <div class="mega-col" style="min-width:150px;">
-      <div class="mega-col-label">A Cryv S.A</div>
-      <a href="#">Quem somos</a>
-      <a href="#">Compliance</a>
-    </div>
-    <div class="mega-sep"></div>
-    <div class="mega-col" style="min-width:210px;padding-left:32px;">
-      <div class="mega-col-label">Nossa atuação</div>
-      <a href="#">Consultoria Cryv</a>
-      <a href="#">Assessoria Cryv</a>
-      <a href="#">Experiências Cryv</a>
-      <a href="#">Espaços Cryv</a>
-      <a href="#">Encontre Cryv escritório</a>
-      <a href="#">Encontre um correspondente</a>
-      <a href="#">Cryv Educação</a>
-    </div>
-    <div class="mega-sep"></div>
-    <div class="mega-col" style="min-width:180px;padding-left:32px;">
-      <div class="mega-col-label">Trabalhe conosco</div>
-      <a href="#">Seja um assessor</a>
-      <a href="#">Seja um consultor</a>
-      <a href="#">Seja um fornecedor</a>
-    </div>
-  </div>
-</div>
-
-<!-- ─── DROPDOWN: Produtos e Serviços ─── -->
-<div class="mega-drop" id="drop-produtos">
-  <div class="mega-cols">
-    <div class="mega-col" style="min-width:200px;">
-      <div class="mega-col-label">Produtos</div>
-      <a href="#">Todos os investimentos</a>
-      <a href="#">Simulador de investimentos</a>
-      <a href="#">Plataformas</a>
-      <a href="#">Home Broker</a>
-      <a href="#">Renda fixa</a>
-    </div>
-    <div class="mega-col" style="min-width:190px;">
-      <div class="mega-col-label" style="visibility:hidden">x</div>
-      <a href="#">Tesouro Direto</a>
-      <a href="#">Ações</a>
-      <a href="#">Aplicativo Cryv</a>
-      <a href="#">Futuros</a>
-      <a href="#">Fundos de investimento</a>
-    </div>
-    <div class="mega-col" style="min-width:175px;">
-      <div class="mega-col-label" style="visibility:hidden">x</div>
-      <a href="#">Fundos imobiliários</a>
-      <a href="#">Oferta pública</a>
-      <a href="#">COE</a>
-      <a href="#">RLP</a>
-    </div>
-    <div class="mega-sep"></div>
-    <div class="mega-col" style="min-width:200px;padding-left:32px;">
-      <div class="mega-col-label">Serviços Financeiros</div>
-      <a href="#">Cartão Cryv Legacy</a>
-      <a href="#">Cartão de Crédito</a>
-      <a href="#">Conta Digital</a>
-      <a href="#">Conta Investimento Global</a>
-    </div>
-    <div class="mega-sep"></div>
-    <div class="mega-col" style="min-width:180px;padding-left:32px;">
-      <div class="mega-col-label">Seguros e previdência</div>
-      <a href="#">Seguro de vida</a>
-      <a href="#">Previdência privada</a>
-      <div style="margin-top:18px;">
-        <div class="mega-col-label">Crédito</div>
-        <a href="#">Crédito Cryv</a>
-        <a href="#">Investimento Ampliado</a>
-      </div>
-      <div style="margin-top:18px;">
-        <div class="mega-col-label">Poder Público</div>
-        <a href="#">RPPS</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ─── DROPDOWN: Conteúdos ─── -->
-<div class="mega-drop" id="drop-cont">
-  <div class="mega-cols">
-    <div class="mega-col">
-      <a href="#">Plataforma de conteúdos Cryv</a>
-      <a href="#">Recomendações de investimento</a>
-      <a href="#">Evento Expert</a>
-      <a href="#">InfoMoney</a>
-    </div>
-  </div>
-</div>
-
-<!-- ─── DROPDOWN: Tire suas dúvidas ─── -->
-<div class="mega-drop" id="drop-duvidas">
-  <div class="mega-cols">
-    <div class="mega-col" style="min-width:225px;">
-      <div class="mega-col-label">Tire suas dúvidas</div>
-      <a href="#">Central de atendimento</a>
-      <a href="#">Custos operacionais</a>
-      <a href="#">Transferência de recursos</a>
-      <a href="#">Portabilidade de investimentos</a>
-    </div>
-    <div class="mega-sep"></div>
-    <div class="mega-col" style="min-width:205px;padding-left:32px;">
-      <div class="mega-col-label">Segurança</div>
-      <a href="#">Bloqueio de acessos</a>
-      <a href="#">Dicas de Segurança</a>
-      <a href="#">Ative o Espaço Seguro</a>
-    </div>
-    <div class="mega-sep"></div>
-    <div class="mega-col" style="min-width:215px;padding-left:32px;">
-      <div class="mega-col-label">Fundo Garantidor de Créditos</div>
-      <a href="#">FGC: Banco Master</a>
-      <a href="#">FGC: Will Bank</a>
-      <a href="#">FGC: Banco Pleno</a>
-    </div>
-  </div>
-</div>
-
-<!-- ─── HERO ─── -->
-<section class="hero">
-  <div class="hero-bg"></div>
+<!-- HERO -->
+<section class="hero" id="home">
   <div class="hero-glow"></div>
-
-  <!-- Left: big headline block -->
   <div class="hero-content">
-    <p class="hero-eyebrow">Seu futuro financeiro começa aqui.</p>
+    <p class="hero-eyebrow">São Paulo · Pague só pela sessão · Via Pix</p>
     <h1>
-      Invista no<br/>
-      futuro<br/>
-      com <span class="hero-highlight">segurança</span><br/>
-      e inovação
+      Sua vida financeira<br/>
+      organizada —<br/>
+      simples, rápido<br/>
+      e <em>barato</em>
     </h1>
     <p class="hero-sub">
-      No Banco Cryv, você tem acesso às melhores soluções financeiras,
-      tecnologia de ponta e atendimento personalizado para fazer seu
-      dinheiro render mais.
+      Orientação financeira individual por R$9,90. Você preenche um formulário, a gente conecta você a um consultor em até 48h, e a sessão acontece pelo WhatsApp — sem app, sem burocracia.
     </p>
     <div class="hero-btns">
-      <a class="hbtn-primary" href="#">Criar minha conta Cryv &nbsp;→</a>
+      <a class="hbtn-primary" href="#quero-comecar">
+        Quero minha sessão
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="hbtn-secondary" href="#como-funciona">Como funciona</a>
     </div>
+    <div class="price-badge">A partir de <strong>R$9,90</strong> &nbsp;·&nbsp; Sem mensalidade · Sem contrato</div>
   </div>
 
-  <!-- Right: info cards -->
   <div class="hero-right">
-    <a class="side-card" href="#">
-      <div class="side-top">CONSULTORIA CRYV</div>
-      <div class="side-body">Planejamento exclusivo com visão de longo prazo</div>
-      <div class="side-link">
-        Saiba mais
-        <svg viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
+    <a class="side-card" href="#quero-comecar">
+      <div class="side-top">✦ Sessão em andamento agora</div>
+      <div class="side-body">"Sempre fico no negativo e não sei por quê." — Maria está sendo orientada sobre como mapear e controlar seus gastos fixos.</div>
+      <div class="side-tag">💬 WhatsApp · 45 min · R$9,90</div>
     </a>
-    <a class="side-card" href="#">
-      <div class="side-link-hl">CDB 150% DO BANCO CRYV:</div>
-      <div class="side-desc-hl">invista até R$60 mil com garantia do FGC</div>
-      <div class="side-link">
-        Abra sua conta
-        <svg viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
+    <a class="side-card" href="#quero-comecar">
+      <div class="side-top">✓ Resultado da última sessão</div>
+      <div class="side-body">João aprendeu a separar as contas do mercadinho das pessoais e entendeu pela primeira vez quanto pode retirar do negócio por mês.</div>
+      <div class="side-link">Quero o mesmo resultado <svg viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </a>
-    <a class="side-card" href="#">
-      <div class="side-top">CARTÃO CRYV LEGACY</div>
-      <div class="side-body">Até 9,5 Pontos Cryv por dólar ou 5,3% de Investback</div>
-      <div class="side-link">
-        Conheça
-        <svg viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
+    <a class="side-card" href="#precos">
+      <div class="side-top">💰 Sem mensalidade. Sem contrato.</div>
+      <div class="side-body">Pague só pela sessão que você fizer. R$9,90 via Pix. Sem fidelidade, sem letra miúda.</div>
+      <div class="side-link">Ver preços <svg viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </a>
   </div>
 </section>
 
-<!-- ─── STATS ─── -->
-<div class="stats-bar">
-  <div class="stat-cell">
-    <div class="stat-n">4,7M+</div>
-    <div class="stat-l">clientes ativos<br/>na plataforma</div>
-  </div>
-  <div class="stat-cell">
-    <div class="stat-n">R$1T+</div>
-    <div class="stat-l">em ativos sob<br/>custódia</div>
-  </div>
-  <div class="stat-cell">
-    <div class="stat-n">25+</div>
-    <div class="stat-l">anos de mercado<br/>no Brasil</div>
-  </div>
-  <div class="stat-cell">
-    <div class="stat-n">1.000+</div>
-    <div class="stat-l">produtos de<br/>investimento</div>
-  </div>
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-cell reveal"><div class="stat-n">R$9,90</div><div class="stat-l">sessão de entrada — o mais acessível do mercado</div></div>
+  <div class="stat-cell reveal"><div class="stat-n">48h</div><div class="stat-l">tempo máximo para conectar você a um consultor</div></div>
+  <div class="stat-cell reveal"><div class="stat-n">100%</div><div class="stat-l">online — WhatsApp ou Google Meet, no seu horário</div></div>
+  <div class="stat-cell reveal"><div class="stat-n">R$0</div><div class="stat-l">de taxa de cadastro — pague só quando quiser</div></div>
 </div>
 
-<!-- ─── CDB BANNER ─── -->
-<div class="cdb-wrap">
-  <div class="cdb-card">
+<!-- COMO FUNCIONA -->
+<section class="section how" id="como-funciona">
+  <div class="how-inner">
     <div>
-      <div class="cdb-lbl">Renda Fixa em Destaque</div>
-      <div class="cdb-ttl">CDB 150% do Banco Cryv</div>
-      <div class="cdb-dsc">Invista até R$60 mil com garantia do FGC. Liquidez diária disponível.</div>
-      <a class="hbtn-primary" href="#" style="display:inline-block;margin-top:22px;font-size:13.5px;padding:12px 28px;">
-        Abra sua conta
-      </a>
+      <p class="sec-label reveal">Como funciona</p>
+      <h2 class="sec-title reveal">Simples do início <em>ao fim</em></h2>
+      <p class="sec-sub reveal">Nada de app, nada de burocracia. Em 4 passos você já está sendo orientado.</p>
+      <div class="steps">
+        <div class="step reveal"><div class="step-num">1</div><div class="step-content"><h3>Preencha o formulário</h3><p>Conta qual é sua maior dificuldade com dinheiro. Leva menos de 2 minutos.</p></div></div>
+        <div class="step reveal"><div class="step-num">2</div><div class="step-content"><h3>Receba seu consultor em até 48h</h3><p>A equipe Cryv conecta você com um consultor disponível e adequado ao seu caso.</p></div></div>
+        <div class="step reveal"><div class="step-num">3</div><div class="step-content"><h3>Pague via Pix — só a sessão</h3><p>Receba a chave Pix e pague apenas o valor da sessão. Sem mensalidade, sem surpresa.</p></div></div>
+        <div class="step reveal"><div class="step-num">4</div><div class="step-content"><h3>Sessão pelo WhatsApp</h3><p>45 a 60 min de orientação prática, no seu horário, pelo canal que você já usa todo dia.</p></div></div>
+      </div>
     </div>
-    <div style="text-align:right;flex-shrink:0;">
-      <div class="cdb-num">150%</div>
-      <div class="cdb-sub">do CDI</div>
+
+    <div class="how-visual reveal">
+      <div class="chat-bar">
+        <div class="chat-avatar">L</div>
+        <div><div class="chat-name">Lucas · Consultor Cryv</div><div class="chat-status">● Online agora</div></div>
+      </div>
+      <div class="chat-bubble"><div class="bav">M</div><div><div class="btext">Oi! Todo mês fico no negativo e não entendo por quê 😔</div><div class="btime">10:02</div></div></div>
+      <div class="chat-bubble right"><div class="bav me">L</div><div><div class="btext">Oi Maria! Vamos mapear seus gastos fixos primeiro. Me conta: aluguel, contas de casa…?</div><div class="btime">10:03</div></div></div>
+      <div class="chat-bubble"><div class="bav">M</div><div><div class="btext">Aluguel R$900, luz, água e o cartão que tá R$1.200 de fatura…</div><div class="btime">10:04</div></div></div>
+      <div class="chat-bubble right"><div class="bav me">L</div><div><div class="btext">Entendi. Cartão não é renda — é dívida futura. Vou te mostrar um método simples pra sair disso. 👇</div><div class="btime">10:05</div></div></div>
+      <div class="pix-row"><span>✅</span><div><strong>Pix confirmado · R$9,90</strong>Sessão com Lucas agendada para hoje às 19h</div></div>
     </div>
-  </div>
-</div>
-
-<!-- ─── PRODUCTS ─── -->
-<section class="prod-sec">
-  <div class="prod-sec-ttl">Produtos e Serviços</div>
-
-  <div class="prod-tabs">
-    <button class="ptab on"  onclick="filterP(this,'all')">Todos</button>
-    <button class="ptab"     onclick="filterP(this,'rf')">Renda fixa</button>
-    <button class="ptab"     onclick="filterP(this,'rv')">Renda variável</button>
-    <button class="ptab"     onclick="filterP(this,'fundos')">Fundos</button>
-    <button class="ptab"     onclick="filterP(this,'sf')">Serviços financeiros</button>
-    <button class="ptab"     onclick="filterP(this,'prev')">Seguros e previdência</button>
-    <button class="ptab"     onclick="filterP(this,'cred')">Crédito</button>
-  </div>
-
-  <div class="pgrid" id="pgrid">
-    <a class="pcard" data-c="all rv"    href="#"><div class="pcard-icon">📈</div><div class="pcard-name">Ações</div><div class="pcard-desc">Invista na bolsa de valores</div></a>
-    <a class="pcard" data-c="all rf"    href="#"><div class="pcard-icon">🏦</div><div class="pcard-name">Renda Fixa</div><div class="pcard-desc">CDB, LCI, LCA e mais</div></a>
-    <a class="pcard" data-c="all rf"    href="#"><div class="pcard-icon">💰</div><div class="pcard-name">Tesouro Direto</div><div class="pcard-desc">Títulos do Governo Federal</div></a>
-    <a class="pcard" data-c="all fundos" href="#"><div class="pcard-icon">📊</div><div class="pcard-name">Fundos de Investimento</div><div class="pcard-desc">Gestores especializados</div></a>
-    <a class="pcard" data-c="all fundos" href="#"><div class="pcard-icon">🏢</div><div class="pcard-name">Fundos Imobiliários</div><div class="pcard-desc">Mercado imobiliário com liquidez</div></a>
-    <a class="pcard" data-c="all rv"    href="#"><div class="pcard-icon">⚡</div><div class="pcard-name">Futuros</div><div class="pcard-desc">Contratos futuros e derivativos</div></a>
-    <a class="pcard" data-c="all rf"    href="#"><div class="pcard-icon">🔮</div><div class="pcard-name">COE</div><div class="pcard-desc">Operações estruturadas</div></a>
-    <a class="pcard" data-c="all rv"    href="#"><div class="pcard-icon">🌍</div><div class="pcard-name">Conta Investimento Global</div><div class="pcard-desc">Invista no exterior</div></a>
-    <a class="pcard" data-c="all sf"    href="#"><div class="pcard-icon">💳</div><div class="pcard-name">Cartão XP Legacy</div><div class="pcard-desc">Até 9,5 pts XP por dólar</div></a>
-    <a class="pcard" data-c="all sf"    href="#"><div class="pcard-icon">📱</div><div class="pcard-name">Conta Digital</div><div class="pcard-desc">Sem mensalidade</div></a>
-    <a class="pcard" data-c="all prev"  href="#"><div class="pcard-icon">🛡️</div><div class="pcard-name">Seguro de Vida</div><div class="pcard-desc">Proteção para sua família</div></a>
-    <a class="pcard" data-c="all prev"  href="#"><div class="pcard-icon">🎯</div><div class="pcard-name">Previdência Privada</div><div class="pcard-desc">Planeje sua aposentadoria</div></a>
-    <a class="pcard" data-c="all cred"  href="#"><div class="pcard-icon">💵</div><div class="pcard-name">Crédito XP</div><div class="pcard-desc">Taxas diferenciadas</div></a>
-    <a class="pcard" data-c="all cred"  href="#"><div class="pcard-icon">🔁</div><div class="pcard-name">Investimento Ampliado</div><div class="pcard-desc">Alavancagem inteligente</div></a>
   </div>
 </section>
 
-<!-- ─── APP DOWNLOAD ─── -->
-<div class="app-sec">
-  <div>
-    <h2>Baixe o aplicativo da Cryv</h2>
-    <p>Gerencie seus investimentos de qualquer lugar,<br/>com segurança e praticidade.</p>
-    <div class="app-bdgs">
-      <a class="abdg" href="#">
-        <svg viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.39-1.32 2.76-2.54 3.99zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-        <div class="abdg-t"><span>Disponível na</span><span>App Store</span></div>
-      </a>
-      <a class="abdg" href="#">
-        <svg viewBox="0 0 24 24"><path d="M3.18 23.76a2 2 0 0 1-.92-1.68V1.92A2 2 0 0 1 3.18.24l.1-.06 12.2 12.2-.1.1L3.18 23.76zm13.64-7.68l-2.22-2.22-9.8 5.64 12.02-3.42zM19.6 12l-2.6-1.48-2.46 2.46 2.48 2.48L19.6 14c.54-.32.82-.76.82-1.04 0-.26-.28-.68-.82-.96zm-11.42-6.1l9.8 5.62-2.22 2.22-7.58-7.84z"/></svg>
-        <div class="abdg-t"><span>Disponível no</span><span>Google Play</span></div>
-      </a>
+<!-- SERVIÇOS -->
+<section class="section" id="servicos" style="background:var(--bg);">
+  <div style="text-align:center;max-width:540px;margin:0 auto;">
+    <p class="sec-label reveal">O que oferecemos</p>
+    <h2 class="sec-title reveal">Orientação <em>para a sua</em> realidade</h2>
+    <p class="sec-sub reveal" style="margin:0 auto;">Sem ações, sem fundos, sem jargão de banco. Falamos do que importa pra quem quer se organizar.</p>
+  </div>
+  <div class="services-grid">
+    <div class="scard reveal"><span class="scard-icon">📒</span><h3>Organização financeira</h3><p>Entender para onde vai o dinheiro e criar um controle de gastos simples que você consiga manter todo mês.</p></div>
+    <div class="scard reveal"><span class="scard-icon">✂️</span><h3>Controle de gastos</h3><p>Identificar o que dá pra cortar, o que é prioridade e como equilibrar as contas mesmo com renda variável.</p></div>
+    <div class="scard reveal"><span class="scard-icon">🗓️</span><h3>Planejamento básico</h3><p>Criar metas reais e simples: sair do vermelho, montar uma reserva, planejar uma compra importante.</p></div>
+    <div class="scard reveal"><span class="scard-icon">🏪</span><h3>Finanças do pequeno negócio</h3><p>Separar contas do negócio das pessoais, entender fluxo de caixa e saber quanto pode retirar por mês.</p></div>
+    <div class="scard reveal"><span class="scard-icon">💳</span><h3>Dívidas e cartão de crédito</h3><p>Priorizar pagamentos, entender juros e parar de cair no ciclo que consome o salário antes do fim do mês.</p></div>
+    <div class="scard reveal"><span class="scard-icon">🌱</span><h3>Primeiros passos financeiros</h3><p>Para quem nunca pensou em guardar dinheiro: como começar com pouco e o que é reserva de emergência.</p></div>
+  </div>
+  <div class="services-note reveal">
+    <p>⚠️ <strong>Importante:</strong> O Cryv oferece <strong>orientação educacional</strong>, não consultoria de investimentos. Não recomendamos ativos financeiros. Para isso, consulte um profissional certificado pela CVM.</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section pricing" id="precos">
+  <div class="pricing-inner">
+    <div>
+      <p class="sec-label reveal">Preços</p>
+      <h2 class="sec-title reveal">Um preço que <em>cabe</em> em qualquer bolso</h2>
+      <p class="sec-sub reveal">Sem assinatura, sem mensalidade, sem fidelidade. Pague só pela sessão, quando quiser.</p>
+      <div class="guarantees">
+        <div class="guarantee reveal">Sem contrato — nenhuma fidelidade exigida</div>
+        <div class="guarantee reveal">Pague por Pix, sem burocracia</div>
+        <div class="guarantee reveal">Cancele com 24h de antecedência</div>
+        <div class="guarantee reveal">Sem taxas ocultas ou cobranças automáticas</div>
+      </div>
+    </div>
+    <div class="price-list">
+      <div class="price-row reveal">
+        <div class="pr-left"><h3>Sessão Individual</h3><p>45–60 minutos · WhatsApp ou Google Meet</p></div>
+        <div class="pr-price">R$9,90<span>via Pix</span></div>
+      </div>
+      <div class="price-row featured reveal">
+        <div class="pr-left"><div class="feat-badge">Mais procurado</div><h3>Sessão para Negócios</h3><p>Pequenos comércios, MEIs e autônomos</p></div>
+        <div class="pr-price">R$19,90<span>via Pix</span></div>
+      </div>
+      <div class="price-note reveal"><strong style="color:var(--gold);">Em breve:</strong> pacote de 3 sessões com desconto. Cadastre-se e seja avisado em primeira mão.</div>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ─── FOOTER ─── -->
+<!-- DEPOIMENTOS -->
+<section class="section" id="depoimentos" style="background:var(--bg3);">
+  <div style="text-align:center;max-width:500px;margin:0 auto;">
+    <p class="sec-label reveal">Depoimentos</p>
+    <h2 class="sec-title reveal">O que nossos <em>clientes</em> dizem</h2>
+  </div>
+  <div class="testim-grid">
+    <div class="tcard reveal"><div class="stars">★★★★★</div><p class="tcard-body">"Nunca pensei que conseguiria entender minhas finanças tão rápido e tão barato. Explicaram tudo de um jeito que fez sentido pra minha realidade."</p><div class="tcard-person"><div class="tcard-av">M</div><div><div class="tcard-name">Maria S.</div><div class="tcard-role">Auxiliar de enfermagem · São Paulo</div></div></div></div>
+    <div class="tcard reveal"><div class="stars">★★★★★</div><p class="tcard-body">"Misturava contas do mercadinho com as pessoais há anos. Em uma sessão de R$19,90 aprendi a separar tudo. Simples assim — não precisei de nada sofisticado."</p><div class="tcard-person"><div class="tcard-av" style="background:rgba(232,176,0,.2);color:var(--gold);">J</div><div><div class="tcard-name">João R.</div><div class="tcard-role">Dono de mercadinho · Zona Leste · SP</div></div></div></div>
+    <div class="tcard reveal"><div class="stars">★★★★★</div><p class="tcard-body">"Fui com vergonha por estar endividada. Mas fui atendida sem julgamento. Saí com um plano claro e concreto — e tudo isso por menos de R$10."</p><div class="tcard-person"><div class="tcard-av" style="background:#3d2a6e;">A</div><div><div class="tcard-name">Ana P.</div><div class="tcard-role">Autônoma · São Paulo</div></div></div></div>
+  </div>
+</section>
+
+<!-- FORM CLIENTE -->
+<section class="client-form-sec" id="quero-comecar">
+  <div class="cform-inner">
+    <div>
+      <p class="sec-label">Quero começar</p>
+      <h2 class="sec-title" style="max-width:400px;">Dê o primeiro passo. É <em>mais fácil</em> do que parece.</h2>
+      <p class="sec-sub">Preencha e nossa equipe entra em contato pelo WhatsApp em até 48 horas com o consultor ideal para você.</p>
+      <div class="cform-guarantees">
+        <div class="cform-g">Cadastro gratuito — pague só pela sessão</div>
+        <div class="cform-g">Nenhum dado vendido a terceiros</div>
+        <div class="cform-g">Você escolhe o dia e horário da sessão</div>
+        <div class="cform-g">Sem compromisso de retorno</div>
+      </div>
+    </div>
+    <div class="the-form">
+      <h3>Quero minha sessão</h3>
+      <p>Preencha abaixo — entraremos em contato pelo WhatsApp</p>
+      <form id="clientForm">
+        <div class="form-row">
+          <div class="f-field"><label>Seu nome</label><input type="text" placeholder="Maria Silva" required/></div>
+          <div class="f-field"><label>WhatsApp</label><input type="tel" placeholder="(11) 9 9999-9999" required/></div>
+        </div>
+        <div class="f-field">
+          <label>Qual é sua maior dificuldade financeira?</label>
+          <select required>
+            <option value="" disabled selected>Selecione uma opção</option>
+            <option>Sempre fico no negativo no final do mês</option>
+            <option>Tenho dívidas e não sei por onde começar</option>
+            <option>Não consigo guardar dinheiro</option>
+            <option>Quero organizar as finanças do meu negócio</option>
+            <option>Quero entender como fazer o dinheiro render</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="f-field">
+          <label>Tipo de sessão</label>
+          <select required>
+            <option value="" disabled selected>Selecione</option>
+            <option>Sessão Individual — R$9,90</option>
+            <option>Sessão para Negócios — R$19,90</option>
+          </select>
+        </div>
+        <div class="f-field">
+          <label>Melhor horário para contato</label>
+          <select>
+            <option>Manhã (8h–12h)</option>
+            <option>Tarde (12h–18h)</option>
+            <option>Noite (18h–21h)</option>
+          </select>
+        </div>
+        <button class="btn-form" type="submit">Quero minha sessão →</button>
+        <p class="form-privacy">🔒 Seus dados estão seguros. Não compartilhamos com terceiros.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ESTUDANTES -->
+<section class="section students" id="estudantes">
+  <div class="students-inner">
+    <div>
+      <p class="sec-label reveal">Para estudantes</p>
+      <h2 class="sec-title reveal">Ganhe experiência <em>real</em> e renda extra</h2>
+      <p class="sec-sub reveal">Estuda Finanças, Administração, Economia ou Contábeis? Aplique o que aprendeu — e receba por isso.</p>
+      <div class="perks-grid">
+        <div class="perk reveal"><div class="perk-icon">💰</div><h4>Renda por sessão</h4><p>De R$5,94 a R$13,93 por sessão, via Pix em até 24h após o atendimento.</p></div>
+        <div class="perk reveal"><div class="perk-icon">📋</div><h4>Portfólio real</h4><p>Histórico de atendimentos e carta de recomendação da Cryv para o mercado.</p></div>
+        <div class="perk reveal"><div class="perk-icon">⏰</div><h4>Flexibilidade total</h4><p>Você define horários e quantas sessões quer fazer por semana.</p></div>
+        <div class="perk reveal"><div class="perk-icon">🎓</div><h4>Experiência prática</h4><p>Aplique conceitos da faculdade em casos reais com impacto social direto.</p></div>
+      </div>
+    </div>
+    <div class="student-form reveal">
+      <h3>Quero ser consultor</h3>
+      <p>Responda abaixo e entraremos em contato para os próximos passos.</p>
+      <form id="studentForm">
+        <div class="f-field"><label>Nome completo</label><input type="text" placeholder="Lucas Mendes" required/></div>
+        <div class="f-field"><label>WhatsApp</label><input type="tel" placeholder="(11) 9 9999-9999" required/></div>
+        <div class="f-field"><label>Curso</label>
+          <select required>
+            <option value="" disabled selected>Selecione seu curso</option>
+            <option>Ciências Contábeis</option><option>Administração</option>
+            <option>Economia</option><option>Finanças</option>
+            <option>Engenharia com foco em finanças</option><option>Outro relacionado</option>
+          </select>
+        </div>
+        <div class="f-field"><label>Semestre atual</label>
+          <select required>
+            <option value="" disabled selected>Selecione</option>
+            <option>2º semestre</option><option>3º semestre</option>
+            <option>4º semestre</option><option>5º semestre ou mais</option><option>Já formado</option>
+          </select>
+        </div>
+        <button class="btn-gold-full" type="submit">Quero ser consultor →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq" id="faq">
+  <div style="text-align:center;max-width:500px;margin:0 auto;">
+    <p class="sec-label reveal">Perguntas frequentes</p>
+    <h2 class="sec-title reveal">Tire suas <em>dúvidas</em></h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O Cryv é uma corretora de investimentos?<div class="faq-arrow">+</div></button><div class="faq-a">Não. O Cryv é uma plataforma de orientação financeira educacional. Não recomendamos investimentos, não movimentamos dinheiro e não somos regulados pela CVM como assessores financeiros. Nosso foco é organização, controle de gastos e primeiros passos financeiros.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Quem são os consultores?<div class="faq-arrow">+</div></button><div class="faq-a">São estudantes de Finanças, Administração, Economia e Ciências Contábeis que passaram por processo de seleção com questionário e teste de conhecimentos. Eles são orientados pela equipe Cryv sobre postura, conduta e limites do serviço antes de começar a atender.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Como funciona o pagamento?<div class="faq-arrow">+</div></button><div class="faq-a">Após o match com seu consultor, você recebe uma chave Pix e paga apenas o valor da sessão. Sem cartão, sem assinatura, sem burocracia. Simples assim.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O que acontece na sessão?<div class="faq-arrow">+</div></button><div class="faq-a">O consultor ouve sua situação e te orienta de forma prática, sem julgamento. Pode ser uma planilha de gastos, um plano para sair das dívidas ou entender o fluxo de caixa do negócio. A sessão dura 45 a 60 minutos pelo WhatsApp ou Google Meet.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Posso cancelar ou remarcar?<div class="faq-arrow">+</div></button><div class="faq-a">Sim. Para reembolso, avise com pelo menos 24h de antecedência. Para remarcar, basta nos chamar no WhatsApp — ajustamos conforme a disponibilidade do consultor.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">O Cryv atende fora de São Paulo?<div class="faq-arrow">+</div></button><div class="faq-a">Por ora estamos focados em São Paulo. Como as sessões são totalmente online, em breve expandiremos. Cadastre-se para ser avisado quando chegarmos à sua região.</div></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <div class="f-grid">
-    <div class="f-col">
-      <div class="f-col-ttl">Produtos e serviços</div>
-      <a href="#">Todos os investimentos</a>
-      <a href="#">Simulador de investimentos</a>
-      <a href="#">Plataformas</a>
-      <a href="#">Home Broker</a>
-      <a href="#">Renda fixa</a>
-      <a href="#">Tesouro Direto</a>
-      <a href="#">Ações</a>
-      <a href="#">Aplicativo Cryv</a>
-      <a href="#">Futuros</a>
-      <a href="#">Fundos de investimento</a>
-      <a href="#">Fundos imobiliários</a>
-      <a href="#">Ofertas públicas</a>
-      <a href="#">RLP</a>
-      <a href="#">COE</a>
-      <a href="#">Cartão de crédito</a>
-      <a href="#">Conta digital</a>
-      <a href="#">Seguro de vida</a>
-      <a href="#">Previdência privada</a>
-      <a href="#">Crédito Cryv</a>
-      <a href="#">Investimento Ampliado</a>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="nav-logo" href="#home">Cryv</a>
+      <p>Orientação financeira acessível para quem sempre foi deixado de fora. Sessões pelo WhatsApp, pagamento via Pix — sem burocracia.</p>
+      <a class="footer-wpp" href="https://wa.me/5511999999999" target="_blank">💬 Fale conosco no WhatsApp</a>
     </div>
-    <div class="f-col">
-      <div class="f-col-ttl">Tire suas dúvidas</div>
-      <a href="#">Central de atendimento</a>
-      <a href="#">Custos operacionais</a>
-      <a href="#">Transferência de recursos</a>
-      <a href="#">Portabilidade de investimentos</a>
-      <a href="#">Transparência na remuneração</a>
-      <div style="margin-top:24px;">
-        <div class="f-col-ttl">Atendimento</div>
-        <a href="#">Atendimento CVM</a>
-        <a href="#">Atendimento MRP</a>
-        <a href="#">Atendimento Ofícios</a>
-        <a href="#">Ouvidoria</a>
-      </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#servicos">O que oferecemos</a>
+      <a href="#precos">Preços</a>
+      <a href="#estudantes">Seja consultor</a>
+      <a href="#faq">Perguntas frequentes</a>
     </div>
-    <div class="f-col">
-      <div class="f-col-ttl">Fale conosco</div>
-      <div class="f-contact-list">
-        <div class="fc-item"><span>Autoatendimento via WhatsApp</span><a href="#">+55 11 4935-2720</a></div>
-        <div class="fc-item"><span>SAC - Dúvidas, reclamações e orientações</span><a href="#">0800-772-0202</a></div>
-        <div class="fc-item"><span>Ouvidoria (Segunda a sexta das 9hs às 18hs)</span><a href="#">0800-722-3730</a></div>
-        <div class="fc-item"><span>Capitais e regiões metropolitanas</span><a href="#">+55 11 4003-3710</a></div>
-        <div class="fc-item"><span>Demais localidades</span><a href="#">0800-880-3710</a></div>
-        <div class="fc-item"><span>Para clientes no exterior</span><a href="#">+55 11 4935-2701</a></div>
-        <div class="fc-item"><span>Atendimento em Libras</span><a href="#">SAC em Libras (clique aqui)</a></div>
-      </div>
+    <div class="footer-col">
+      <h4>Informações</h4>
+      <a href="#">Quem somos</a>
+      <a href="#">Política de privacidade</a>
+      <a href="#">Termos de uso</a>
+      <a href="#">Seleção de consultores</a>
     </div>
   </div>
-
-  <div class="f-links">
-    <a href="#">B3</a><span>|</span>
-    <a href="#">BSM</a><span>|</span>
-    <a href="#">CVM</a><span>|</span>
-    <a href="#">Política de privacidade</a><span>|</span>
-    <a href="#">Política de cookies</a><span>|</span>
-    <a href="#">Segurança</a><span>|</span>
-    <a href="#">Correspondentes Cambiais</a><span>|</span>
-    <a href="#">Correspondentes Bancários</a><span>|</span>
-    <a href="#">Seja um Fornecedor</a>
+  <div class="footer-disclaimer">O Cryv é uma plataforma de orientação financeira educacional. Não somos uma instituição financeira, não oferecemos recomendação de investimentos e não somos regulados pela CVM como prestadores de assessoria financeira. Todo conteúdo das sessões tem caráter estritamente educacional. Para recomendação de ativos, consulte um profissional certificado e habilitado pela CVM.</div>
+  <div class="footer-bottom">
+    <span>© 2026 Cryv — Orientação Financeira Acessível · São Paulo, SP</span>
+    <span>Feito para quem sempre mereceu mais acesso</span>
   </div>
-
-  <div class="f-disclaimer">
-    Este material foi elaborado pelas empresas do Grupo Cryv Inc. ("Grupo Cryv") e possui caráter meramente informativo, não sendo uma oferta, recomendação e/ou garantia de contratação dos produtos aqui mencionados. Todo conteúdo deste material ficará sujeito às análises internas de elegibilidade, crédito, compliance e cadastro, além de não configurarem uma recomendação quanto à manutenção, compra ou venda de ativos financeiros e valores mobiliários. Os prazos, taxas, benefícios e demais condições aqui contidas são meramente indicativas e estão sujeitas às alterações sem aviso prévio. Quaisquer condições promocionais aqui previstas poderão ser alteradas, suspensas ou canceladas a qualquer tempo. O Grupo Cryv não se responsabiliza por endividamentos, prejuízos, diretos ou indiretos, que decorram da utilização deste material. Investimentos em mercados financeiros e de capitais estão sujeitos a riscos de perda superior ao valor total do capital investido.
-    <br/><br/>
-    Para mais informações sobre produtos, tabelas de custos operacionais e políticas de cobrança, acesse o nosso site: www.xpi.com.br ou ligue para 4003-3710 (capitais e regiões metropolitanas), 0800-880-3710 (demais localidades), +55 11 4935-2701 (clientes no exterior). Para reclamações, utilize o SAC 0800-772-0202. Se ainda não ficar satisfeito, entre em contato com a Ouvidoria em 0800-722-3730.
-  </div>
-
-  <div class="f-addr">Av. Chedid Jafet, 75, Torre Sul - Vila Olímpia, São Paulo, SP. CEP: 04551-060</div>
-  <div class="f-copy">© 2026 Cryv S.A. CNPJ: 02.332.886/0001-04 — Cryv Investimentos | Você no comando da sua vida financeira</div>
 </footer>
 
-<!-- ─── BOTÃO AJUDA ─── -->
-<button class="help-fab">
-  <svg viewBox="0 0 24 24" fill="none">
-    <circle cx="12" cy="12" r="10" stroke="#111" stroke-width="2"/>
-    <path d="M9.5 9.5C9.5 8.12 10.62 7 12 7s2.5 1.12 2.5 2.5c0 1.5-2.5 2.5-2.5 4" stroke="#111" stroke-width="2" stroke-linecap="round"/>
-    <circle cx="12" cy="17" r="1" fill="#111"/>
-  </svg>
-</button>
+<div class="toast" id="toast"></div>
 
-<script src="js/main.js"></script>
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 48));
+
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 70); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 5000);
+  }
+
+  document.getElementById('clientForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    showToast('✅ Recebemos! Em até 48h entramos em contato pelo WhatsApp.');
+    this.reset();
+  });
+  document.getElementById('studentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    showToast('✅ Candidatura recebida! Entraremos em contato em breve.');
+    this.reset();
+  });
+</script>
 </body>
 </html>

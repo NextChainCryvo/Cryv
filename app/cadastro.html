@@ -65,7 +65,7 @@
         <p class="reg-section-sub">Utilizaremos este e-mail para comunicação oficial.</p>
         <input class="reg-input" type="email" id="inputEmail" placeholder="seu@email.com" required>
 
-        <button type="button" class="btn-reg" onclick="irParaStep2()">Continuar com e-mail</button>
+        <button type="button" class="btn-reg" onclick="irParaStep2(false)">Continuar com e-mail</button>
 
         <div class="reg-divider-text"><span>ou</span></div>
 
@@ -74,6 +74,9 @@
 
       <div id="step2" class="form-step">
         <h2 class="reg-section-title">Qual é o seu nome completo?</h2>
+        <p class="reg-section-sub">Exatamente como ele está escrito no seu documento de identificação.</p>
+        <input class="reg-input" type="text" id="inputNome" placeholder="Nome completo" required>
+         <h2 class="reg-section-title">Digite sua senha?</h2>
         <p class="reg-section-sub">Exatamente como ele está escrito no seu documento de identificação.</p>
         <input class="reg-input" type="text" id="inputNome" placeholder="Nome completo" required>
 
@@ -132,44 +135,43 @@
     r.nextElementSibling.style.background = '#111';
   });
 
-  // --- LÓGICA DAS ETAPAS (STEPS) ---
+
   const step1 = document.getElementById('step1');
   const step2 = document.getElementById('step2');
   const barraProgresso = document.getElementById('barraProgresso');
 
-  function irParaStep2() {
+  function irParaStep2(google) {
+
+    if(!google){
     const email = document.getElementById('inputEmail').value;
-    
-    // Validação simples antes de avançar
+  
     if (!email || !email.includes('@')) {
       alert("Por favor, insira um e-mail válido antes de continuar.");
       return;
     }
+  }
 
-    // Oculta Step 1
     step1.classList.remove('fade-in');
     setTimeout(() => {
       step1.classList.remove('active');
-      
-      // Mostra Step 2
+     
       step2.classList.add('active');
-      // Atualiza a barra de progresso (exemplo visual)
+     
       barraProgresso.style.width = '50%'; 
-      
-      // Pequeno delay para o browser renderizar o display:block antes de animar a opacidade
+    
       setTimeout(() => {
         step2.classList.add('fade-in');
       }, 50);
-    }, 400); // 400ms é o tempo da transição no CSS
+    }, 400); 
   }
 
   function voltarParaStep1() {
-    // Oculta Step 2
+   
     step2.classList.remove('fade-in');
     setTimeout(() => {
       step2.classList.remove('active');
       
-      // Mostra Step 1
+   
       step1.classList.add('active');
       barraProgresso.style.width = '0%';
       
@@ -179,11 +181,10 @@
     }, 400);
   }
 
-  // --- LÓGICA DO GOOGLE LOGIN ---
   window.onload = function () {
-    // Inicializa o botão do Google
+
     google.accounts.id.initialize({
-      client_id: "SEU_CLIENT_ID_DO_GOOGLE_AQUI.apps.googleusercontent.com", // Substitua pelo seu ID
+      client_id: "385196509655-1t8rgurjbtajqge3f19jd91c63rqhhjp.apps.googleusercontent.com",
       callback: handleGoogleResponse
     });
     google.accounts.id.renderButton(
@@ -193,10 +194,8 @@
   }
 
   function handleGoogleResponse(response) {
-    // Aqui você envia o response.credential (Token JWT) para o seu backend Node.js
     console.log("Token recebido do Google:", response.credential);
-    // Como o usuário já autenticou, podemos avançar direto para a Etapa 2 para pegar os dados complementares
-    irParaStep2();
+    irParaStep2(true);
   }
 </script>
 </body>
