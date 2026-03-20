@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cryv — Orientação Financeira Acessível</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="shortcut icon" href="public/img/logo.png" type="image/x-icon">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -22,7 +23,15 @@
       --bdgold: rgba(218,175,55,0.15);
       --radius: 14px;
     }
-    body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
     /* NAV */
     nav {
@@ -34,7 +43,7 @@
     }
     nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.7); }
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Plus Jakarta Sans', serif;
       font-size: 24px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
       color: var(--gold); text-decoration: none; margin-right: 40px; flex-shrink: 0;
     }
@@ -83,7 +92,7 @@
     }
     .hero-eyebrow::before { content: '●'; font-size: 7px; }
     .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Plus Jakarta Sans', serif;
       font-size: clamp(48px, 6vw, 80px); font-weight: 700;
       line-height: 1.0; letter-spacing: -2px; color: var(--white);
       margin-bottom: 24px; animation: fadeUp .8s .1s ease both;
@@ -139,13 +148,13 @@
     .stats { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); display: grid; grid-template-columns: repeat(4,1fr); }
     .stat-cell { padding: 36px; border-right: 1px solid var(--border); }
     .stat-cell:last-child { border-right: none; }
-    .stat-n { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 700; letter-spacing: -2px; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+    .stat-n { font-family: 'Plus Jakarta Sans', serif; font-size: 44px; font-weight: 700; letter-spacing: -2px; color: var(--gold); line-height: 1; margin-bottom: 6px; }
     .stat-l { font-size: 13px; color: var(--muted); line-height: 1.5; }
 
     /* SECTIONS */
     .section { padding: 96px 5%; }
     .sec-label { font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
-    .sec-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 700; line-height: 1.05; letter-spacing: -1.5px; color: var(--white); margin-bottom: 18px; }
+    .sec-title { font-family: 'Plus Jakarta Sans', serif; font-size: clamp(36px, 4vw, 56px); font-weight: 700; line-height: 1.05; letter-spacing: -1.5px; color: var(--white); margin-bottom: 18px; }
     .sec-title em { color: var(--gold); font-style: italic; font-weight: 300; }
     .sec-sub { font-size: 16px; line-height: 1.75; color: var(--muted); max-width: 500px; }
 
@@ -155,7 +164,7 @@
     .steps { display: flex; flex-direction: column; }
     .step { display: flex; gap: 22px; padding: 28px 0; border-bottom: 1px solid var(--border); }
     .step:last-child { border-bottom: none; }
-    .step-num { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: var(--gold); color: #111; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 20px; display: flex; align-items: center; justify-content: center; }
+    .step-num { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: var(--gold); color: #111; font-family: 'Plus Jakarta Sans', serif; font-weight: 700; font-size: 20px; display: flex; align-items: center; justify-content: center; }
     .step-content h3 { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
     .step-content p { font-size: 14px; line-height: 1.65; color: var(--muted); }
 
@@ -198,7 +207,7 @@
     .price-row.featured { background: rgba(232,176,0,.08); border-color: rgba(232,176,0,.3); }
     .pr-left h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
     .pr-left p { font-size: 13px; color: var(--muted); }
-    .pr-price { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 700; letter-spacing: -1px; color: var(--gold); text-align: right; }
+    .pr-price { font-family: 'Plus Jakarta Sans', serif; font-size: 38px; font-weight: 700; letter-spacing: -1px; color: var(--gold); text-align: right; }
     .pr-price span { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--muted); font-weight: 400; display: block; }
     .feat-badge { display: inline-block; background: var(--gold); color: #111; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; margin-bottom: 8px; }
     .price-note { font-size: 13px; color: var(--muted); line-height: 1.7; padding: 16px 20px; background: rgba(255,255,255,.03); border: 1px solid var(--border); border-radius: 12px; border-left: 2px solid var(--gold); }
@@ -226,7 +235,7 @@
     .cform-g { display: flex; align-items: center; gap: 12px; font-size: 14px; color: rgba(255,255,255,.65); }
     .cform-g::before { content: '✓'; width: 22px; height: 22px; border-radius: 50%; background: rgba(232,176,0,.2); color: var(--gold); font-weight: 800; font-size: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .the-form { background: var(--bg3); border: 1px solid var(--border); border-radius: 20px; padding: 40px; }
-    .the-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+    .the-form h3 { font-family: 'Plus Jakarta Sans', serif; font-size: 26px; font-weight: 700; margin-bottom: 6px; }
     .the-form > p { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .f-field { margin-bottom: 16px; }
@@ -253,7 +262,7 @@
     .perk h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
     .perk p { font-size: 13px; color: var(--muted); line-height: 1.6; }
     .student-form { background: var(--bg3); border: 1px solid var(--border); border-radius: 20px; padding: 38px; }
-    .student-form h3 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+    .student-form h3 { font-family: 'Plus Jakarta Sans', serif; font-size: 26px; font-weight: 700; margin-bottom: 6px; }
     .student-form > p { font-size: 14px; color: var(--muted); margin-bottom: 24px; }
     .btn-gold-full { width: 100%; background: var(--gold); color: #111; padding: 14px; border-radius: 100px; font-size: 15px; font-weight: 800; border: none; cursor: pointer; font-family: 'Inter', sans-serif; transition: background .2s, transform .15s; margin-top: 4px; }
     .btn-gold-full:hover { background: var(--gold2); transform: translateY(-1px); }
@@ -271,7 +280,7 @@
     /* FOOTER */
     footer { background: #0c0c0c; border-top: 1px solid var(--border); padding: 68px 5% 36px; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; padding-bottom: 52px; border-bottom: 1px solid var(--border); margin-bottom: 36px; }
-    .footer-brand .nav-logo { font-size: 28px; display: block; margin-bottom: 14px; }
+    .footer-brand .nav-logo { font-size: 28px; display: block; margin-bottom: 0px; }
     .footer-brand p { font-size: 14px; color: var(--muted); line-height: 1.75; max-width: 300px; }
     .footer-wpp { display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff; padding: 10px 20px; border-radius: 100px; font-size: 13.5px; font-weight: 700; text-decoration: none; margin-top: 20px; transition: opacity .2s; }
     .footer-wpp:hover { opacity: .85; }
@@ -311,7 +320,7 @@
 <body>
 
 <nav id="navbar">
-  <a class="nav-logo" href="#home">Cryv</a>
+  <a class="nav-logo" href="#home"><img src="public/img/logo.png" alt="logo" width="50" height="50"></a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#como-funciona">Como funciona</a></li>
     <li><a href="#servicos">Serviços</a></li>
@@ -354,7 +363,7 @@
     <a class="side-card" href="#quero-comecar">
       <div class="side-top">✦ Sessão em andamento agora</div>
       <div class="side-body">"Sempre fico no negativo e não sei por quê." — Maria está sendo orientada sobre como mapear e controlar seus gastos fixos.</div>
-      <div class="side-tag">💬 WhatsApp · 45 min · R$9,90</div>
+      <div class="side-tag"><img src="public/img/chat.png" height="20" width="20"> WhatsApp · 45 min · R$9,90</div>
     </a>
     <a class="side-card" href="#quero-comecar">
       <div class="side-top">✓ Resultado da última sessão</div>
@@ -362,7 +371,7 @@
       <div class="side-link">Quero o mesmo resultado <svg viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </a>
     <a class="side-card" href="#precos">
-      <div class="side-top">💰 Sem mensalidade. Sem contrato.</div>
+      <div class="side-top"><img src="public/img/money-bag.png" height="15" width="15"> Sem mensalidade. Sem contrato.</div>
       <div class="side-body">Pague só pela sessão que você fizer. R$9,90 via Pix. Sem fidelidade, sem letra miúda.</div>
       <div class="side-link">Ver preços <svg viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </a>
@@ -401,7 +410,7 @@
       <div class="chat-bubble right"><div class="bav me">L</div><div><div class="btext">Oi Maria! Vamos mapear seus gastos fixos primeiro. Me conta: aluguel, contas de casa…?</div><div class="btime">10:03</div></div></div>
       <div class="chat-bubble"><div class="bav">M</div><div><div class="btext">Aluguel R$900, luz, água e o cartão que tá R$1.200 de fatura…</div><div class="btime">10:04</div></div></div>
       <div class="chat-bubble right"><div class="bav me">L</div><div><div class="btext">Entendi. Cartão não é renda — é dívida futura. Vou te mostrar um método simples pra sair disso. 👇</div><div class="btime">10:05</div></div></div>
-      <div class="pix-row"><span>✅</span><div><strong>Pix confirmado · R$9,90</strong>Sessão com Lucas agendada para hoje às 19h</div></div>
+      <div class="pix-row"><span><img src="public/img/verificacao.png" height="25" width="25"></span><div><strong>Pix confirmado · R$9,90</strong>Sessão com Lucas agendada para hoje às 19h</div></div>
     </div>
   </div>
 </section>
@@ -414,12 +423,12 @@
     <p class="sec-sub reveal" style="margin:0 auto;">Sem ações, sem fundos, sem jargão de banco. Falamos do que importa pra quem quer se organizar.</p>
   </div>
   <div class="services-grid">
-    <div class="scard reveal"><span class="scard-icon">📒</span><h3>Organização financeira</h3><p>Entender para onde vai o dinheiro e criar um controle de gastos simples que você consiga manter todo mês.</p></div>
-    <div class="scard reveal"><span class="scard-icon">✂️</span><h3>Controle de gastos</h3><p>Identificar o que dá pra cortar, o que é prioridade e como equilibrar as contas mesmo com renda variável.</p></div>
-    <div class="scard reveal"><span class="scard-icon">🗓️</span><h3>Planejamento básico</h3><p>Criar metas reais e simples: sair do vermelho, montar uma reserva, planejar uma compra importante.</p></div>
-    <div class="scard reveal"><span class="scard-icon">🏪</span><h3>Finanças do pequeno negócio</h3><p>Separar contas do negócio das pessoais, entender fluxo de caixa e saber quanto pode retirar por mês.</p></div>
-    <div class="scard reveal"><span class="scard-icon">💳</span><h3>Dívidas e cartão de crédito</h3><p>Priorizar pagamentos, entender juros e parar de cair no ciclo que consome o salário antes do fim do mês.</p></div>
-    <div class="scard reveal"><span class="scard-icon">🌱</span><h3>Primeiros passos financeiros</h3><p>Para quem nunca pensou em guardar dinheiro: como começar com pouco e o que é reserva de emergência.</p></div>
+    <div class="scard reveal"><span class="scard-icon"><img src="public/img/tarefas.png" height="35" width="35"></span><h3>Organização financeira</h3><p>Entender para onde vai o dinheiro e criar um controle de gastos simples que você consiga manter todo mês.</p></div>
+    <div class="scard reveal"><span class="scard-icon"><img src="public/img/corte-de-gastos.png" height="45" width="45"></span><h3>Controle de gastos</h3><p>Identificar o que dá pra cortar, o que é prioridade e como equilibrar as contas mesmo com renda variável.</p></div>
+    <div class="scard reveal"><span class="scard-icon"><img src="public/img/calendario.png" height="45" width="45"></span><h3>Planejamento básico</h3><p>Criar metas reais e simples: sair do vermelho, montar uma reserva, planejar uma compra importante.</p></div>
+    <div class="scard reveal"><span class="scard-icon"><img src="public/img/companhia.png" height="45" width="45"></span><h3>Finanças do pequeno negócio</h3><p>Separar contas do negócio das pessoais, entender fluxo de caixa e saber quanto pode retirar por mês.</p></div>
+    <div class="scard reveal"><span class="scard-icon"><img src="public/img/cartao-de-debito.png" height="45" width="45"></span><h3>Dívidas e cartão de crédito</h3><p>Priorizar pagamentos, entender juros e parar de cair no ciclo que consome o salário antes do fim do mês.</p></div>
+    <div class="scard reveal"><span class="scard-icon"><img src="public/img/plantar.png" height="45" width="45"></span><h3>Primeiros passos financeiros</h3><p>Para quem nunca pensou em guardar dinheiro: como começar com pouco e o que é reserva de emergência.</p></div>
   </div>
   <div class="services-note reveal">
     <p>⚠️ <strong>Importante:</strong> O Cryv oferece <strong>orientação educacional</strong>, não consultoria de investimentos. Não recomendamos ativos financeiros. Para isso, consulte um profissional certificado pela CVM.</p>
@@ -481,17 +490,29 @@
         <div class="cform-g">Sem compromisso de retorno</div>
       </div>
     </div>
+
     <div class="the-form">
       <h3>Quero minha sessão</h3>
       <p>Preencha abaixo — entraremos em contato pelo WhatsApp</p>
-      <form id="clientForm">
+
+      <!-- FORM ATUALIZADO -->
+      <form action="https://api.web3forms.com/submit" method="POST">
+       <input type="hidden" name="access_key" value="2e003a41-2164-424c-95c7-c40a638be1de">
         <div class="form-row">
-          <div class="f-field"><label>Seu nome</label><input type="text" placeholder="Maria Silva" required/></div>
-          <div class="f-field"><label>WhatsApp</label><input type="tel" placeholder="(11) 9 9999-9999" required/></div>
+          <div class="f-field">
+            <label>Seu nome</label>
+            <input type="text" name="nome" placeholder="Maria Silva" required />
+          </div>
+
+          <div class="f-field">
+            <label>WhatsApp</label>
+            <input type="tel" name="whatsapp" placeholder="(11) 9 9999-9999" required />
+          </div>
         </div>
+
         <div class="f-field">
           <label>Qual é sua maior dificuldade financeira?</label>
-          <select required>
+          <select name="dificuldade" required>
             <option value="" disabled selected>Selecione uma opção</option>
             <option>Sempre fico no negativo no final do mês</option>
             <option>Tenho dívidas e não sei por onde começar</option>
@@ -501,65 +522,31 @@
             <option>Outro</option>
           </select>
         </div>
+
         <div class="f-field">
           <label>Tipo de sessão</label>
-          <select required>
+          <select name="tipo_sessao" required>
             <option value="" disabled selected>Selecione</option>
             <option>Sessão Individual — R$9,90</option>
             <option>Sessão para Negócios — R$19,90</option>
           </select>
         </div>
+
         <div class="f-field">
           <label>Melhor horário para contato</label>
-          <select>
+          <select name="horario">
             <option>Manhã (8h–12h)</option>
             <option>Tarde (12h–18h)</option>
             <option>Noite (18h–21h)</option>
           </select>
         </div>
-        <button class="btn-form" type="submit">Quero minha sessão →</button>
-        <p class="form-privacy">🔒 Seus dados estão seguros. Não compartilhamos com terceiros.</p>
-      </form>
-    </div>
-  </div>
-</section>
 
-<!-- ESTUDANTES -->
-<section class="section students" id="estudantes">
-  <div class="students-inner">
-    <div>
-      <p class="sec-label reveal">Para estudantes</p>
-      <h2 class="sec-title reveal">Ganhe experiência <em>real</em> e renda extra</h2>
-      <p class="sec-sub reveal">Estuda Finanças, Administração, Economia ou Contábeis? Aplique o que aprendeu — e receba por isso.</p>
-      <div class="perks-grid">
-        <div class="perk reveal"><div class="perk-icon">💰</div><h4>Renda por sessão</h4><p>De R$5,94 a R$13,93 por sessão, via Pix em até 24h após o atendimento.</p></div>
-        <div class="perk reveal"><div class="perk-icon">📋</div><h4>Portfólio real</h4><p>Histórico de atendimentos e carta de recomendação da Cryv para o mercado.</p></div>
-        <div class="perk reveal"><div class="perk-icon">⏰</div><h4>Flexibilidade total</h4><p>Você define horários e quantas sessões quer fazer por semana.</p></div>
-        <div class="perk reveal"><div class="perk-icon">🎓</div><h4>Experiência prática</h4><p>Aplique conceitos da faculdade em casos reais com impacto social direto.</p></div>
-      </div>
-    </div>
-    <div class="student-form reveal">
-      <h3>Quero ser consultor</h3>
-      <p>Responda abaixo e entraremos em contato para os próximos passos.</p>
-      <form id="studentForm">
-        <div class="f-field"><label>Nome completo</label><input type="text" placeholder="Lucas Mendes" required/></div>
-        <div class="f-field"><label>WhatsApp</label><input type="tel" placeholder="(11) 9 9999-9999" required/></div>
-        <div class="f-field"><label>Curso</label>
-          <select required>
-            <option value="" disabled selected>Selecione seu curso</option>
-            <option>Ciências Contábeis</option><option>Administração</option>
-            <option>Economia</option><option>Finanças</option>
-            <option>Engenharia com foco em finanças</option><option>Outro relacionado</option>
-          </select>
-        </div>
-        <div class="f-field"><label>Semestre atual</label>
-          <select required>
-            <option value="" disabled selected>Selecione</option>
-            <option>2º semestre</option><option>3º semestre</option>
-            <option>4º semestre</option><option>5º semestre ou mais</option><option>Já formado</option>
-          </select>
-        </div>
-        <button class="btn-gold-full" type="submit">Quero ser consultor →</button>
+        <!-- opcional: redirecionamento -->
+        <input type="hidden" name="_redirect">
+
+        <button class="btn-form" type="submit">Quero minha sessão →</button>
+
+        <p class="form-privacy"><img src="public/img/bloquear.png" width="15" height="15" /> Seus dados estão seguros. Não compartilhamos com terceiros.</p>
       </form>
     </div>
   </div>
@@ -585,9 +572,9 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <a class="nav-logo" href="#home">Cryv</a>
+      <a class="nav-logo" href="#home"><img src="public/img/logo.png" alt="logo" width="50" height="50"></a>
       <p>Orientação financeira acessível para quem sempre foi deixado de fora. Sessões pelo WhatsApp, pagamento via Pix — sem burocracia.</p>
-      <a class="footer-wpp" href="https://wa.me/5511999999999" target="_blank">💬 Fale conosco no WhatsApp</a>
+      <a class="footer-wpp" href="https://wa.me/5511999999999" target="_blank"><img src="public/img/chat-white.png" height="30" width="30" /> Fale conosco no WhatsApp</a>
     </div>
     <div class="footer-col">
       <h4>Navegação</h4>
